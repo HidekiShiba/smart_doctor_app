@@ -42,6 +42,8 @@
 
 - アプリケーション詳細設計（案）：https://docs.google.com/spreadsheets/d/1Y4zGP8C48spyMd1iDqeYjzCBk3_AYdRV3pYsbJz_QOk/edit#gid=0
 
+- ワイヤーフレーム（案）：別途作成済
+
 ## チャレンジ要素一覧
 
 <p>https://docs.google.com/spreadsheets/d/1es2eJS87Av2v8XVCOBGKXcI6U58wjpSDNU7Bu3eUJhQ/edit#gid=0</p>
