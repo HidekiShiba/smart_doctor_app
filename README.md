@@ -42,7 +42,7 @@
 
 - アプリケーション詳細設計（案）：https://docs.google.com/spreadsheets/d/1Y4zGP8C48spyMd1iDqeYjzCBk3_AYdRV3pYsbJz_QOk/edit#gid=0
 
-- ワイヤーフレーム（案）：別途作成済
+- ワイヤーフレーム（案）：https://drive.google.com/drive/folders/1lbReF9LYeKv5RxZLoOM1vxIeqVw3phgB
 
 ## チャレンジ要素一覧
 
