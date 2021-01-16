@@ -44,7 +44,7 @@
 
 - ワイヤーフレーム（案）：https://drive.google.com/drive/folders/1lbReF9LYeKv5RxZLoOM1vxIeqVw3phgB
 
-## チャレンジ要素一覧
+## 機能一覧
 
 <p>https://docs.google.com/spreadsheets/d/1es2eJS87Av2v8XVCOBGKXcI6U58wjpSDNU7Bu3eUJhQ/edit#gid=0</p>
 
