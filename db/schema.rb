@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_012309) do
+ActiveRecord::Schema.define(version: 2021_01_19_042522) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,39 @@ ActiveRecord::Schema.define(version: 2021_01_19_012309) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "congestions", force: :cascade do |t|
+    t.integer "count", null: false
+    t.integer "time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "examinations", force: :cascade do |t|
+    t.integer "reservation_id"
+    t.integer "reception_id"
+    t.string "diagnosis", default: "", null: false
+    t.string "treatment", default: "", null: false
+    t.string "prescription_status", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.integer "information_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "information", force: :cascade do |t|
+    t.integer "theme_id", null: false
+    t.string "subject", default: "", null: false
+    t.string "image_id", null: false
+    t.text "body", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "patients", force: :cascade do |t|
@@ -44,6 +77,42 @@ ActiveRecord::Schema.define(version: 2021_01_19_012309) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_patients_on_email", unique: true
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
+  end
+
+  create_table "receptions", force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.integer "congestion_id", null: false
+    t.integer "number", null: false
+    t.datetime "start_time", null: false
+    t.integer "examination_status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.datetime "date_time", null: false
+    t.integer "examination_count", null: false
+    t.string "symptom", default: "", null: false
+    t.string "body_parts", default: "", null: false
+    t.date "starting_point", null: false
+    t.integer "treatment", null: false
+    t.string "prescription", default: ""
+    t.integer "side_effect", null: false
+    t.string "other_diseases", default: ""
+    t.string "hospital_name", default: ""
+    t.integer "pregnancy", null: false
+    t.integer "purpose", null: false
+    t.string "request", default: ""
+    t.integer "examination_status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
