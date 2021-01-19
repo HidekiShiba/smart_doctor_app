@@ -1,2 +1,23 @@
-<h1>Public::Patients#show</h1>
-<p>Find me in app/views/public/patients/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <h5 class="ml-5 mt-5">マイページ</h5><br />
+      <table class="table-sm">
+        <tr>
+          <td><strong>登録情報　</strong></td>
+          <td><%= link_to '編集する', edit_patient_path, class:"btn btn-sm btn-outline-primary" %></td>
+       </tr>
+      </table>
+      <table class="table-sm table-bordered">
+        <tr><td class="table-active">氏名</td>　<td><%= @patient.last_name %>　<%= @patient.first_name %></td></tr>
+        <tr><td class="table-active">カナ</td><td><%= @patient.last_name_kana %>　<%= @patient.first_name_kana %></td></tr>
+        <tr><td class="table-active">性別</td><td><%= @patient.sex %></td></tr>
+        <tr><td class="table-active">生年月日</td><td><%= @patient.birth_date %></td></tr>
+        <tr><td class="table-active">郵便番号</td><td><%= @patient.postal_code %></td></tr>
+        <tr><td class="table-active">住所</td><td><%= @patient.address %></td></tr>
+        <tr><td class="table-active">電話番号</td><td><%= @patient.tel %></td></tr>
+        <tr><td class="table-active">メールアドレス</td><td><%= @patient.email %></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
