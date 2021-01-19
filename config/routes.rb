@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    resources :clients, only: [:show, :edit, :update] do
+    resources :patients, only: [:show, :edit, :update] do
       member do
         get 'unsubscribe'
         patch 'withdraw'
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    #root to: 'homes#top'
+    root to: 'congestions#index'
     resources :patients, only: [:index, :show, :edit, :update]
     resources :reservations, only: [:index, :show, :edit, :update, :destroy]
     resources :examinations, only: [:index, :new, :create, :show, :edit, :update, :destroy]
