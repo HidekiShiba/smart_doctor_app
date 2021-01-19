@@ -1,60 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'patients/index'
-    get 'patients/show'
-    get 'patients/edit'
-  end
-  namespace :admin do
-    get 'informations/index'
-    get 'informations/new'
-    get 'informations/show'
-    get 'informations/edit'
-  end
-  namespace :admin do
-    get 'themes/index'
-    get 'themes/edit'
-  end
-  namespace :admin do
-    get 'receptions/index'
-    get 'receptions/show'
-  end
-  namespace :admin do
-    get 'congestions/index'
-  end
-  namespace :admin do
-    get 'examinations/index'
-    get 'examinations/new'
-    get 'examinations/show'
-    get 'examinations/edit'
-  end
-  namespace :admin do
-    get 'reservations/index'
-    get 'reservations/show'
-    get 'reservations/edit'
-  end
-  namespace :public do
-    get 'informations/index'
-    get 'informations/show'
-  end
-  namespace :public do
-    get 'receptions/index'
-    get 'receptions/new'
-  end
-  namespace :public do
-    get 'examinations/index'
-    get 'examinations/show'
-  end
-  namespace :public do
-    get 'reservations/index'
-    get 'reservations/show'
-    get 'reservations/new'
-    get 'reservations/edit'
-  end
-  namespace :public do
-    get 'patients/show'
-    get 'patients/edit'
-    get 'patients/unsubscribe'
-  end
   devise_for :patients, controllers: {
     registrations: 'patients/registrations',
     #passwords:     'patients/passwords',
@@ -64,4 +8,33 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  scope module: :public do
+    root to: 'homes#top'
+    get 'about' => 'homes#about'
+    resources :clients, only: [:show, :edit, :update] do
+      member do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
+    resources :congestions, only: [:index]
+    resources :reservations, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :examinations, only: [:index, :show]
+    resources :receptions, only: [:index, :new, :create, :destroy]
+    resources :informations, only: [:index, :show] do
+      resource :favorites, only: [:create, :destroy]
+    end
+  end
+
+  namespace :admin do
+    #root to: 'homes#top'
+    resources :patients, only: [:index, :show, :edit, :update]
+    resources :reservations, only: [:index, :show, :edit, :update, :destroy]
+    resources :examinations, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :congestions, only: [:index, :create, :edit, :update]
+    resources :receptions, only: [:index, :show, :destroy]
+    resources :themes, only: [:index, :create, :edit, :update]
+    resources :informations, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  end
 end
