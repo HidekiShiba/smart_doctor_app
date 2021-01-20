@@ -1,2 +1,37 @@
-<h1>Admin::Informations#index</h1>
-<p>Find me in app/views/admin/informations/index.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-7 offset-1">
+      <h5 class="ml-5 mb-3">お知らせ一覧</h5>
+    </div>
+    <div class="col-3">
+      <%= link_to '新しい商品を追加する' , new_admin_information_path, class:"btn btn-sm btn-outline-primary" %>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <table class="table table-striped">
+          <tr>
+          <td>お知らせID</td>
+          <td>テーマ</td>
+          <td>投稿画像</td>
+          <td>件名</td>
+          </tr>
+          <% @informations.each do |information| %>
+              <tr>
+                <td><%= information.id %></td>
+                <td><%= information.theme.name %></td>
+                <td><%= attachment_image_tag information, :image, fallback: "no_image.jpg", size: "240x200" %></td>
+                <td>
+                  <%= link_to admin_information_path(information.id) do %>
+                   <%= information.subject %>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+      </table>
+      <%= paginate @informations %>
+    </div>
+  </div>
+</div>
