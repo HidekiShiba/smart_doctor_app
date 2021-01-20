@@ -1,2 +1,30 @@
-<h1>Admin::Informations#new</h1>
-<p>Find me in app/views/admin/informations/new.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h5 class="ml-5 mb-3">お知らせ新規投稿</h5>
+      <%= form_with model:@new_information, url: admin_informations_path, local:true do |f| %>
+        <table class="table-sm">
+          <tr>
+            <td><h6>テーマ</h6></td>
+            <td><%= f.collection_select(:theme_id, @themes, :id, :name, {prompt: "投稿テーマを選択してください"}) %></td>
+          </tr>
+          <tr>
+            <td><h6>投稿画像</h6></td>
+            <td><%= f.attachment_field :image %></td>
+          </tr>
+          <tr>
+            <td><h6>件名</h6></td>
+            <td><%= f.text_field :subject %></td>
+          </tr>
+          <tr>
+            <td><h6>本文</h6></td>
+            <td><%= f.text_area :body %></td>
+          </tr>
+          <tr>
+            <td></td><td><%= f.submit '投稿', class:"btn btn-outline-primary" %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

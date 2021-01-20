@@ -1,2 +1,37 @@
-<h1>Admin::Informations#show</h1>
-<p>Find me in app/views/admin/informations/show.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 offset-1">
+    <h5 class="ml-5 mt-5">お知らせ詳細</h5>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4 offset-1">
+      <%= attachment_image_tag @information, :image, fallback: "no_image.jpg", size: "240x200" %>
+    </div>
+    <div class="col-7">
+      <table class="table-sm">
+        <tr>
+          <td><h6>テーマ</h6></td>
+          <td><%= @information.theme.name %></td>
+        </tr>
+        <tr>
+          <td><h6>投稿画像</h6></td>
+          <td><%= attachment_image_tag @information, :image, fallback: "no_image.jpg", size: "240x200" %></td>
+        </tr>
+        <tr>
+          <td><h6>件名</h6></td>
+          <td><%= @information.subject %></td>
+        </tr>
+        <tr>
+          <td><h6>本文</h6></td>
+          <td><%= @information.body %></td>
+        </tr>
+        <tr>
+          <td><td><%= link_to 'お知らせの編集', edit_admin_information_path(@information.id), class:"btn btn-sm btn-outline-success" %></td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
