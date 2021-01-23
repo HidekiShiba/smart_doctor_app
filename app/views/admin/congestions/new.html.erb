@@ -1,0 +1,5 @@
+<%= form_with model: @new_congestion, url: admin_congestions_path, local: true do |f| %>
+  <%= f.number_field :count, min: 0, placeholder:"待ち人数入力" %></br>
+  <%= f.number_field :time, min: 0, placeholder:"待ち時間入力" %></br>
+  <%= f.submit '作成', class:"btn btn-sm btn-success" %>
+<% end %>

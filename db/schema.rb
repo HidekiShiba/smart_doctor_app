@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_042522) do
+ActiveRecord::Schema.define(version: 2021_01_23_015022) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -91,7 +91,6 @@ ActiveRecord::Schema.define(version: 2021_01_19_042522) do
 
   create_table "reservations", force: :cascade do |t|
     t.integer "patient_id", null: false
-    t.datetime "date_time", null: false
     t.integer "examination_count", null: false
     t.string "symptom", default: "", null: false
     t.string "body_parts", default: "", null: false
@@ -107,6 +106,8 @@ ActiveRecord::Schema.define(version: 2021_01_19_042522) do
     t.integer "examination_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "themes", force: :cascade do |t|
