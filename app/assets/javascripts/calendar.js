@@ -1,30 +1,41 @@
-$(function() {
-  // 初期処理
+$(function () {
   $('#calendar').fullCalendar({
+  // 初期処理
     // ここに各種オプションを書いていくと設定が適用されていく
+    // options定義
     header: {
-            left: 'month, agendaWeek, agendaDay',
-            center: 'title',
+            // left: 'month, agendaWeek, agendaDay',
+            left: 'title',
             right: 'today prev,next'
     },
-        defaultView: 'agendaWeek',
-        minTime: "09:00:00",
-        maxTime: "19:00:00",
-        editable: true,
-        firstDay: 1,
-        allDaySlot: false,
-        
     views: {
-        dayGridMonth: {
-          titleFormat: { year: 'numeric', month: 'numeric' },
-        },
-        listMonth: {
-          titleFormat: { year: 'numeric', month: 'numeric' },
-          listDayFormat: { month: 'numeric', day: 'numeric', weekday: 'narrow' },
-          listDaySideFormat: false,
-        }
+            month: {columnFormat: 'ddd',},
+            week: {columnFormat: 'M/D[(]ddd[)]',},
     },
-        
-        
+    // timeZone: 'Asia/Tokyo',
+    // locale: 'ja',
+    // businessHours: true,
+    defaultView: 'agendaWeek',
+    // navLinks: true,
+    minTime: "09:00:00",
+    maxTime: "19:00:00",
+    slotLabelFormat:"HH:mm",
+    slotLabelInterval: 30,
+    editable: true,
+    firstDay: 1,
+    allDaySlot: false,
+    contentHeight: 'auto',
+    selectable:true,
+    selectHelper:true,
+    // weekends: false,
+    reservations: "/reservations.json",
+    color: 'yellow',
+    textColor: 'black',
+        select: function(startDate, endDate) {
+      // alert('selected ' + startDate.format() + ' to ' + endDate.format());
+      $('#new_reservation').modal('show');
+      $(".input-start").val(moment(startDate).format("YYYY-MM-DD HH:mm"));
+      $(".input-end").val(moment(endDate).format("YYYY-MM-DD HH:mm"));
+    }
   })
 });

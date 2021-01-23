@@ -28,11 +28,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root to: 'congestions#index'
+    # root to: 'congestions#index'
     resources :patients, only: [:index, :show, :edit, :update]
     resources :reservations, only: [:index, :show, :edit, :update, :destroy]
     resources :examinations, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :congestions, only: [:index, :create, :edit, :update]
+    resources :congestions, only: [:index, :new, :create, :edit, :update]
     resources :receptions, only: [:index, :show, :destroy]
     resources :themes, only: [:index, :create, :edit, :update]
     resources :informations, only: [:index, :new, :create, :show, :edit, :update, :destroy]

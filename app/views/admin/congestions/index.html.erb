@@ -1,2 +1,22 @@
-<h1>Admin::Congestions#index</h1>
-<p>Find me in app/views/admin/congestions/index.html.erb</p>
+<h2>ただいまの待ち状況</h2>
+<%= @congestion.count %>
+<%= @congestion.time %>
+
+<%= form_with model: @congestion, url: admin_congestion_path(@congestion.id), local: true do |f| %>
+<table class="table-sm table-bordered table-striped mt-3 padding-10">
+  <thead class="thead-light">
+    <tr>
+      <th>待ち人数</th>
+      <th>待ち時間</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= f.number_field :count, min: 0 %></td>
+      <td><%= f.number_field :time, min: 0 %></td>
+      <td><%= f.submit "更新", class:"btn btn-sm btn-success"%></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
