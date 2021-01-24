@@ -12,7 +12,7 @@ $(function () {
             month: {columnFormat: 'ddd',},
             week: {columnFormat: 'M/D[(]ddd[)]',},
     },
-    // timeZone: 'Asia/Tokyo',
+    timeZone: 'Asia/Tokyo',
     // locale: 'ja',
     // businessHours: true,
     defaultView: 'agendaWeek',

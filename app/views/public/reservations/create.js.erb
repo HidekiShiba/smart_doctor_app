@@ -1,5 +1,5 @@
 $('#calendar').fullCalendar(
-  'renderEvent',
+  'renderReservation',
   $.parseJSON("<%=j render(@new_reservation, format: :json).html_safe %>"),
   true
 );
