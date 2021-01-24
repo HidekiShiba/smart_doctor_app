@@ -15,6 +15,11 @@ class Admin::ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update(reservation_params)
+    if @reservation.examination_status == "受診済"
+       @examination = Examination.new
+       @examination.reservation_id = @reservation.id
+       @examination.save
+    end
     redirect_to request.referer
   end
   
