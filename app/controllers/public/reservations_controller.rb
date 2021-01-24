@@ -40,9 +40,4 @@ class Public::ReservationsController < ApplicationController
       :pregnancy, :purpose, :request, :examination_status
     )
   end
-  
-  def set_content
-    @tmp = params[:content]
-    render nothing: true
-  end
 end

@@ -9,7 +9,7 @@
        </tr>
       </table>
       <table class="table-sm table-bordered">
-        <tr><td class="table-active">受診開始時間</td><td><%= @reservation.start_time.strftime("%Y/%m/%d %H:%M")  %></td></tr>
+        <tr><td class="table-active">受診開始時間</td><td><%= @reservation.start_time.strftime("%Y/%m/%d %H:%M") %></td></tr>
         <tr><td class="table-active">受診回数</td><td><%= @reservation.examination_count %></td></tr>
         <tr><td class="table-active">症状</td><td><%= @reservation.symptom %></td></tr>
         <tr><td class="table-active">身体部位</td><td><%= @reservation.body_parts %></td></tr>

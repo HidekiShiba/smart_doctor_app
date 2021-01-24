@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_015022) do
+ActiveRecord::Schema.define(version: 2021_01_24_084527) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_015022) do
     t.string "prescription_status", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "update_status", default: 0, null: false
   end
 
   create_table "favorites", force: :cascade do |t|

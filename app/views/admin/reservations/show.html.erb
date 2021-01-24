@@ -1,2 +1,29 @@
-<h1>Admin::Reservations#show</h1>
-<p>Find me in app/views/admin/reservations/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <h5 class="ml-5 mt-5">予約内容詳細</h5><br />
+      <table class="table-sm">
+        <tr>
+          <td><strong>登録情報　</strong></td>
+          <td><%= link_to '予約内容更新', edit_reservation_path, class:"btn btn-sm btn-outline-primary" %></td>
+       </tr>
+      </table>
+      <table class="table-sm table-bordered">
+        <tr><td class="table-active">受診開始時間</td><td><%= @reservation.start_time.strftime("%Y/%m/%d %H:%M") %></td></tr>
+        <tr><td class="table-active">受診回数</td><td><%= @reservation.examination_count %></td></tr>
+        <tr><td class="table-active">症状</td><td><%= @reservation.symptom %></td></tr>
+        <tr><td class="table-active">身体部位</td><td><%= @reservation.body_parts %></td></tr>
+        <tr><td class="table-active">症状日</td><td><%= @reservation.starting_point.strftime("%Y/%m/%d") %></td></tr>
+        <tr><td class="table-active">治療の有無</td><td><%= @reservation.treatment %></td></tr>
+        <tr><td class="table-active">処方中の薬</td><td><%= @reservation.prescription %></td></tr>
+        <tr><td class="table-active">副作用の有無</td><td><%= @reservation.side_effect %></td></tr>
+        <tr><td class="table-active">他の疾患</td><td><%= @reservation.other_diseases %></td></tr>
+        <tr><td class="table-active">かかりつけ病院</td><td><%= @reservation.hospital_name %></td></tr>
+        <tr><td class="table-active">妊娠の有無</td><td><%= @reservation.pregnancy %></td></tr>
+        <tr><td class="table-active">受診目的</td><td><%= @reservation.purpose %></td></tr>
+        <tr><td class="table-active">医師への要望</td><td><%= @reservation.request %></td></tr>
+        <tr><td class="table-active">受診ステータス</td><td><%= @reservation.examination_status %></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
