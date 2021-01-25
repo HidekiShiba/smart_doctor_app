@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :reservations, only: [:index, :show, :edit, :update, :destroy]
     resources :examinations, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :congestions, only: [:index, :new, :create, :edit, :update]
-    resources :receptions, only: [:index, :show, :destroy]
+    resources :receptions, only: [:index, :show, :update, :destroy]
     resources :themes, only: [:index, :create, :edit, :update]
     resources :informations, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
