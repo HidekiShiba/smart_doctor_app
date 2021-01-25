@@ -14,7 +14,7 @@
   <tbody>
     <tr>
       <td><%= f.number_field :count, min: 0 %></td>
-      <td><%= f.number_field :time, min: 0 %></td>
+      <td><%= f.number_field :time, value: @congestion.count * 20, readonly: true %></td>
       <td><%= f.submit "更新", class:"btn btn-sm btn-success"%></td>
     </tr>
   </tbody>
