@@ -1,6 +1,7 @@
 class Admin::CongestionsController < ApplicationController
   def index
     @congestion = Congestion.find(1)
+    @receptions = Reception.all.page(params[:page])
   end
   
   def update

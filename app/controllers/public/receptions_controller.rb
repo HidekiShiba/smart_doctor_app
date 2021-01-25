@@ -21,5 +21,4 @@ class Public::ReceptionsController < ApplicationController
   def reception_params
     params.require(:reception).permit(:patient_id, :congestion_id, :number, :start_time,:examination_status)
   end
-  
 end
