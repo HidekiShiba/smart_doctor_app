@@ -1,0 +1,31 @@
+class Admin::ReceptionsController < ApplicationController
+  def index
+    @receptions = Reception.all.page(params[:page])
+  end
+
+  def show
+    @reception = Reception.find(params[:id])
+  end
+  
+  def update
+    @reception = Reception.find(params[:id])
+    @reception.update(reception_params)
+    if @reception.examination_status == "受診済"
+       @examination = Examination.new
+       @examination.reception_id = @reception.id
+       @examination.save
+    end
+    redirect_to request.referer
+  end
+  
+  def destroy
+    @reception = Reception.find(params[:id])
+    @reception.destroy
+    redirect_to request.referer
+  end
+  
+  private
+  def reception_params
+    params.require(:reception).permit(:patient_id, :congestion_id, :number, :start_time,:examination_status)
+  end
+end

@@ -1,0 +1,17 @@
+<h3>ただいまの待ち状況</h3>
+<table class="table-sm table-bordered table-striped mt-3 padding-10">
+  <thead class="thead-light">
+    <tr>
+      <th>待ち人数</th>
+      <th>待ち時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @congestion.count %>人</td>
+      <td><%= @congestion.time %>分</td>
+    </tr>
+  </tbody>
+</table>
+<h6 class="mt-5">当日受付をご希望の方</h6>
+<p class="ml-5"><%= link_to '整理券発行ページへ', new_reception_path %></p>

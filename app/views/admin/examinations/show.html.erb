@@ -1,0 +1,75 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h5 class="ml-5 mb-4">受診詳細画面</h5>
+      <table>
+        <% if @examination.reception_id.nil? %>
+        <tr>
+          <td><h6>受診日時</h6></td>
+          <td><%= @examination.reservation.start_time.strftime("%Y/%m/%d %H:%M") %></td>
+        </tr>
+        <tr>
+          <td><h6>患者ID</h6></td>
+          <td><%= @examination.reservation.patient.id %></td>
+        </tr>
+        <tr>
+          <td><h6>患者氏名</h6></td>
+          <td><%= @examination.reservation.patient.last_name + @examination.reservation.patient.first_name %></td>
+        </tr>
+        <tr>
+          <td><h6>生年月日</h6></td>
+          <td><%= @examination.reservation.patient.birth_date.strftime("%Y/%m/%d") %></td>
+        </tr>
+        <tr>
+          <td><h6>性別</h6></td>
+          <td><%= @examination.reservation.patient.sex %></td>
+        </tr>
+        <% else %>
+        <tr>
+          <td><h6>受診日時</h6></td>
+          <td><%= @examination.reception.start_time.strftime("%Y/%m/%d %H:%M") %></td>
+        </tr>
+        <tr>
+          <td><h6>患者ID</h6></td>
+          <td><%= @examination.reception.patient.id %></td>
+        </tr>
+        <tr>
+          <td><h6>患者氏名</h6></td>
+          <td><%= @examination.reception.patient.last_name + @examination.reception.patient.first_name %></td>
+        </tr>
+        <tr>
+          <td><h6>生年月日</h6></td>
+          <td><%= @examination.reception.patient.birth_date.strftime("%Y/%m/%d") %></td>
+        </tr>
+        <tr>
+          <td><h6>性別</h6></td>
+          <td><%= @examination.reception.patient.sex %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td><h6>診断</h6></td>
+          <td><%= @examination.diagnosis %></td>
+        </tr>
+        <tr>
+          <td><h6>処置</h6></td>
+          <td><%= @examination.treatment %></td>
+        </tr>
+        <tr>
+          <td><h6>処方箋の有無</h6></td>
+          <td><%= @examination.prescription_status %></td>
+        </tr>
+        <tr>
+          <td><h6>処方箋内容</h6></td>
+          <td><%= @examination.prescription_name %></td>
+        </tr>
+        <tr>
+          <td><h6>入力ステータス</h6></td>
+          <td><%= @examination.update_status %></td>
+        </tr>
+        <tr>
+          <td><%= link_to '受診内容の更新', edit_admin_examination_path(@examination.id), class:"btn btn-sm btn-outline-secondary" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

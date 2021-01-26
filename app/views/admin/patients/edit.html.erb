@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h4class="ml-5 mt-4 mb-4"><strong><%= @patient.last_name+@patient.first_name %>さんの患者情報編集画面</strong></h4>
+        <div class="row">
+          <div class="col-4">
+            <div class="d-flex justify-content-start"><strong>患者ID</strong><p><%= @patient.id %></p></div>
+              <%= form_with model: @patient, url: admin_patient_path, local:true do |f| %>
+                <h6>氏名</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :last_name %><%= f.text_field :first_name %></div>
+                <h6>フリガナ</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></div>
+                <h6>生年月日</h6>
+                  <div class="d-flex justify-content-start"><%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10) %></div>
+                <h6>性別</h6>
+                  <div class="d-flex justify-content-start"><%= f.radio_button :sex, :男性 %><%= f.label :男性 %><%= f.radio_button :sex, :女性 %><%= f.label :女性 %></div>
+                <h6>郵便番号</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :postal_code %></div>
+                <h6>住所</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :address %></div>
+                <h6>電話番号</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :tel %></div>
+                <h6>メールアドレス</h6>
+                  <div class="d-flex justify-content-start"><%= f.text_field :email %></div>
+                <h6>患者ステータス</h6>
+                  <div class="d-flex justify-content-start">
+                    <p><%= f.radio_button :is_unsubscribe_flag, false %>有効患者</p>
+                    <p><%= f.radio_button :is_unsubscribe_flag, true %>退会患者</p>
+                  </div>
+                <%= f.submit'変更を保存する',class:"btn btn-sm btn-success" %>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

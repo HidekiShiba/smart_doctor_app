@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h5 class="ml-5 mb-5">受診一覧画面</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>受診日時</th>
+            <th>患者ID</th>
+            <th>患者氏名</th>
+            <th>生年月日</th>
+            <th>性別</th>
+            <th>作業ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @examinations.each do |examination| %>
+        <tr>
+          <% if examination.reception_id.nil? %>
+          <td>
+            <%= link_to admin_examination_path(examination.id) do %>
+              <%= examination.reservation.start_time.strftime("%Y/%m/%d %H:%M") %>
+            <% end %>
+          </td>
+          <td><%= examination.reservation.patient.id %></td>
+          <td><%= examination.reservation.patient.last_name + examination.reservation.patient.first_name %></td>
+          <td><%= examination.reservation.patient.birth_date.strftime("%Y/%m/%d") %></td>
+          <td><%= examination.reservation.patient.sex %></td>
+          <% else %>
+          <td>
+            <%= link_to admin_examination_path(examination.id) do %>
+              <%= examination.reception.start_time.strftime("%Y/%m/%d %H:%M") %>
+            <% end %>
+          </td>
+          <td><%= examination.reception.patient.id %></td>
+          <td><%= examination.reception.patient.last_name + examination.reception.patient.first_name %></td>
+          <td><%= examination.reception.patient.birth_date.strftime("%Y/%m/%d") %></td>
+          <td><%= examination.reception.patient.sex %></td>
+          <% end %>
+          <td>
+            <%= form_with model: examination, url: admin_examination_path(examination.id), local: true do |f| %>
+              <%= f.select :update_status, Examination.update_statuses.keys %>
+              <%= f.submit "変更", class:"btn btn-sm btn-success"%>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <%= paginate @examinations %>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <h5 class="ml-5 mt-5">当日受付内容詳細</h5><br />
+      <table class="table-sm">
+        <tr>
+          <td><strong>登録情報　</strong></td>
+       </tr>
+      </table>
+      <table class="table-sm table-bordered">
+        <tr><td class="table-active">受診開始予定時間</td><td><%= @reception.start_time.strftime("%Y/%m/%d %H:%M") %></td></tr>
+        <tr><td class="table-active">受診ステータス</td><td><%= @reception.examination_status %></td></tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h5 class="ml-5 mb-4">患者詳細画面</h5>
+      <table>
+      <tr>
+        <td><h6>患者ID</h6></td>
+        <td><%= @patient.id %></td>
+      </tr>
+      <tr>
+        <td><h6>氏名</h6></td>
+        <td><%= @patient.last_name + @patient.first_name %></td>
+      </tr>
+      <tr>
+        <td><h6>フリガナ</h6></td>
+        <td><%= @patient.last_name_kana + @patient.first_name_kana %></td>
+      </tr>
+      <tr>
+        <td><h6>生年月日</h6></td>
+        <td><%= @patient.birth_date %></td>
+      </tr>
+      <tr>
+        <td><h6>性別</h6></td>
+        <td><%= @patient.sex %></td>
+      </tr>
+      <tr>
+        <td><h6>郵便番号</h6></td>
+        <td><%= @patient.postal_code %></td>
+      </tr>
+      <tr>
+        <td><h6>住所</h6></td>
+        <td><%= @patient.address %></td>
+      </tr>
+      <tr>
+        <td><h6>電話番号</h6></td>
+        <td><%= @patient.tel %></td>
+      </tr>
+      <tr>
+        <td><h6>メールアドレス</h6></td>
+        <td><%= @patient.email %></td>
+      </tr>  <tr>
+        <td><h6>患者ステータス</h6></td>
+        <td><% if @patient.is_unsubscribe_flag == false %>
+                有効患者
+            <% elsif @patient.is_unsubscribe_flag == true %>
+                退会患者
+            <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= link_to '患者情報の編集', edit_admin_patient_path(@patient.id), class:"btn btn-sm btn-outline-secondary" %></td>
+      </tr>
+      </table>
+    </div>
+  </div>
+</div>

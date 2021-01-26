@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h4 class="ml-5 mt-5">会員情報一覧</h4>
+      <table class="table table-striped mt-5">
+        <tr>
+          <td>患者ID</td>
+          <td>患者氏名</td>
+          <td>メールアドレス</td>
+          <td>ステータス</td>
+        </tr>
+        <% @patients.each do |patient| %>
+        <tr>
+          <td><%= patient.id %></td>
+          <td>
+            <%= link_to admin_patient_path(patient.id) do %>
+              <%= patient.last_name + patient.first_name %>
+            <% end %>
+          </td>
+          <td><%= patient.email %></td>
+          <td><% if patient.is_unsubscribe_flag == false %>
+                  有効会員
+              <% elsif patient.is_unsubscribe_flag == true %>
+                  無効会員
+              <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%= paginate @patients %>

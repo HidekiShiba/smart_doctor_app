@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-7 offset-1">
+      <h5 class="ml-5 mb-3">お知らせ一覧</h5>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <table class="table table-striped">
+          <tr>
+          <td>お知らせID</td>
+          <td>テーマ</td>
+          <td>投稿画像</td>
+          <td>件名</td>
+          <td></td>
+          </tr>
+          <% @informations.each do |information| %>
+              <tr>
+                <td><%= information.id %></td>
+                <td><%= information.theme.name %></td>
+                <td><%= attachment_image_tag information, :image, fallback: "no_image.jpg", size: "240x200" %></td>
+                <td>
+                  <%= link_to information_path(information.id) do %>
+                   <%= information.subject %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if information.favorited_by?(current_patient) %>
+                    <p>
+                      <%= link_to information_favorites_path(information), method: :delete do %>
+                        ★<%= information.favorites.count %> いいね
+                      <% end %>
+                    </p>
+                    <% else %>
+                    <p>
+                      <%= link_to information_favorites_path(information), method: :post do %>
+                        ☆<%= information.favorites.count %> いいね
+                      <% end %>
+                    </p>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+      </table>
+      <%= paginate @informations %>
+    </div>
+  </div>
+</div>
