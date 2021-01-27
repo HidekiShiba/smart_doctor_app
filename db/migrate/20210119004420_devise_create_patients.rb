@@ -9,7 +9,7 @@ class DeviseCreatePatients < ActiveRecord::Migration[5.2]
       t.string :last_name_kana,       null: false, default: ""
       t.string :first_name_kana,      null: false, default: ""
       t.date :birth_date,             null: false
-      t.integer :sex,                 null: false, default: ""
+      t.integer :sex,                 null: false
       t.string :postal_code,          null: false, default: ""
       t.string :address,              null: false, default: ""
       t.string :tel,                  null: false, default: ""

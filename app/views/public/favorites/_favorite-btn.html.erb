@@ -1,0 +1,5 @@
+<% if information.favorited_by?(current_patient) %>
+  <%= link_to information.favorites.count, information_favorites_path(information), method: :delete, remote: true, class: "fas fa-star star_orange" %>
+<% else %>
+  <%= link_to information.favorites.count, information_favorites_path(information), method: :post, remote: true, class: "far fa-star" %>
+<% end %>
