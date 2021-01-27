@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_01_24_114720) do
     t.integer "theme_id", null: false
     t.string "subject", default: "", null: false
     t.string "image_id", null: false
-    t.text "body", default: "", null: false
+    t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
