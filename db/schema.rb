@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_01_24_114720) do
     t.integer "reception_id"
     t.string "diagnosis", default: "", null: false
     t.string "treatment", default: "", null: false
-    t.integer "prescription_status"
+    t.integer "prescription_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "update_status", default: 0, null: false
