@@ -26,20 +26,8 @@
                    <%= information.subject %>
                   <% end %>
                 </td>
-                <td>
-                  <% if information.favorited_by?(current_patient) %>
-                    <p>
-                      <%= link_to information_favorites_path(information), method: :delete do %>
-                        ★<%= information.favorites.count %> いいね
-                      <% end %>
-                    </p>
-                    <% else %>
-                    <p>
-                      <%= link_to information_favorites_path(information), method: :post do %>
-                        ☆<%= information.favorites.count %> いいね
-                      <% end %>
-                    </p>
-                  <% end %>
+                <td id="favorite-btn-<%= information.id %>">
+                  <%= render "public/favorites/favorite-btn", information: information %>
                 </td>
               </tr>
           <% end %>
