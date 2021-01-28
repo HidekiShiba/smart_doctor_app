@@ -28,14 +28,23 @@ $(function () {
     selectable:true,
     selectHelper:true,
     // weekends: false,
-    reservations: "/reservations.json",
-    color: 'yellow',
-    textColor: 'black',
-        select: function(startDate, endDate) {
+    // reservations: "/index.json",
+    // color: 'yellow',
+    // textColor: 'black',
+    select: function(startDate, endDate) {
       // alert('selected ' + startDate.format() + ' to ' + endDate.format());
       $('#new_reservation').modal('show');
       $(".input-start").val(moment(startDate).format("YYYY-MM-DD HH:mm"));
       $(".input-end").val(moment(endDate).format("YYYY-MM-DD HH:mm"));
+      // overlap: false
+    },
+    
+    select: function(startDate, endDate) {
+      // alert('selected ' + startDate.format() + ' to ' + endDate.format());
+      $(".input-start").val(moment(startDate).format("YYYY-MM-DD HH:mm"));
+      $(".input-end").val(moment(endDate).format("YYYY-MM-DD HH:mm"));
+      $('#edit_reservation').modal('hide');
+      // overlap: false
     }
   })
 });
