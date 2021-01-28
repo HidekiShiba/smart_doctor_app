@@ -19,4 +19,5 @@
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/lang/ja
-//= require_tree .
+//= require jquery.jpostal
+//= require_tree
