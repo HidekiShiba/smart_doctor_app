@@ -1,18 +1,18 @@
 class Public::ReservationsController < ApplicationController
   def index
-    @new_reservation = Reservation.new
+    @reservation = Reservation.new
     @reservations = Reservation.all
   end
 
   def new
-    @new_reservation = Reservation.new
+    @reservation = Reservation.new
   end
   
   def create
-    @new_reservation = Reservation.new(reservation_params)
-    @new_reservation.patient_id = current_patient.id
-    @new_reservation.save
-    redirect_to reservation_path(@new_reservation.id)
+    @reservation = Reservation.new(reservation_params)
+    @reservation.patient_id = current_patient.id
+    @reservation.save
+    redirect_to reservation_path(@reservation.id)
   end
   
   def show

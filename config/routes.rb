@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
+    get 'search' => 'searches#search'
     resources :patients, only: [:show, :edit, :update] do
       member do
         get 'unsubscribe'

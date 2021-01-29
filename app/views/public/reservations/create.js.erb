@@ -1,6 +1,6 @@
 $('#calendar').fullCalendar(
   'renderReservation',
-  $.parseJSON("<%=j render(@new_reservation, format: :json).html_safe %>"),
+  $.parseJSON("<%=j render(@reservation, format: :json).html_safe %>"),
   true
 );
 $('.modal').modal('hide');
