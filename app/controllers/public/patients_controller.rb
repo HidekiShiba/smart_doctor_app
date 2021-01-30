@@ -13,11 +13,10 @@ class Public::PatientsController < ApplicationController
     redirect_to patient_path(current_patient)
   end
   
-  def unsubscribe
-    @patient = current_patient
-  end
-  
   def withdraw
+    @patient = current_patient
+    @patient.update(is_unsubscribe_flag: true)
+    redirect_to root_path
   end
   
   private

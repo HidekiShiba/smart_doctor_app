@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     get 'search' => 'searches#search'
     resources :patients, only: [:show, :edit, :update] do
       member do
-        get 'unsubscribe'
         patch 'withdraw'
       end
     end
