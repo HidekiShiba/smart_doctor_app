@@ -13,11 +13,36 @@
           <tr><td>電話番号</td><td><%= f.text_field :tel, autofocus: true %></td></tr>
           <tr><td>メールアドレス　</td><td><%= f.text_field :email, autofocus: true %></td></tr>
           <tr>
-            <td></td><td><%= f.submit '編集内容を保存', class:"btn btn-outline-success" %></td><td></td>
-            <td><%= link_to '退会する', unsubscribe_patient_path, class:"btn btn-outline-danger" %></td>
+            <td></td><td><%= f.submit '編集内容を保存', class: "btn btn-outline-success" %></td><td></td>
+            <td><button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#unsubscribe">退会する</button></td>
           </tr>
         </table>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="unsubscribe" tabindex="-1" role="dialog" aria-labelledby="unsubscribeLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="unsubscribeLabel">退会確認</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>本当に退会しますか？</h5>
+        <p>退会すると、患者登録情報や<br/>
+        これまでの受診履歴が閲覧出来ず、<br/>
+        Webでの当日受付と予約することが出来ません。<br/>
+        退会する場合は、<strong>「退会する」</strong>をクリックしてください。</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">退会しない</button>
+        <%= button_to '退会する', withdraw_patient_path(@patient.id), method: :patch, class: "btn btn-danger" %>
+      </div>
     </div>
   </div>
 </div>
