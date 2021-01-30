@@ -9,4 +9,16 @@ class Patient < ApplicationRecord
   has_many :favorites, dependent: :destroy
   
   enum sex: { 男性: 0, 女性: 1}
+  
+  def self.looks(searches, words)
+    if searches == "perfect_match"
+      @patient = Patient.where("id LIKE ?", "#{words}").or(where("last_name_kana LIKE ?", "#{words}"))
+    elsif searches == "partial_match"
+      @patient = Patient.where("id LIKE ?", "%#{words}%").or(where("last_name_kana LIKE ?", "%#{words}%"))
+    elsif searches == "forward_match"
+      @patient = Patient.where("id LIKE ?", "#{words}%").or(where("last_name_kana LIKE ?", "#{words}%"))
+    else
+      @patient = Patient.where("id LIKE ?", "%#{words}").or(where("last_name_kana LIKE ?", "%#{words}"))
+    end
+  end
 end

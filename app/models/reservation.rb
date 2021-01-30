@@ -10,5 +10,15 @@ class Reservation < ApplicationRecord
   enum examination_status: {受診前: 0, 受診済: 1}
   
   # scope :between, lambda {|start_time, end_time| {:conditions => ["? < starts_at and starts_at < ?", Event.format_date(start_time), Event.format_date(end_time)] }}
-
+  def self.looks(searches, words)
+    if searches == "perfect_match"
+      @reservation = Reservation.where("id LIKE ?", "#{words}").or(where("last_name_kana LIKE ?", "#{words}"))
+    elsif searches == "partial_match"
+      @reservation = Reservation.where("id LIKE ?", "%#{words}%").or(where("last_name_kana LIKE ?", "%#{words}%"))
+    elsif searches == "forward_match"
+      @reservation = Reservation.where("id LIKE ?", "#{words}%").or(where("last_name_kana LIKE ?", "#{words}%"))
+    else
+      @reservation = Reservation.where("id LIKE ?", "%#{words}").or(where("last_name_kana LIKE ?", "%#{words}"))
+    end
+  end
 end

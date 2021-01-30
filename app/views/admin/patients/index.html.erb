@@ -18,7 +18,8 @@
             <% end %>
           </td>
           <td><%= patient.email %></td>
-          <td><% if patient.is_unsubscribe_flag == false %>
+          <td>
+            <% if patient.is_unsubscribe_flag == false %>
                   有効会員
               <% elsif patient.is_unsubscribe_flag == true %>
                   無効会員
