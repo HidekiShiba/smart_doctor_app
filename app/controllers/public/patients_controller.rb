@@ -16,6 +16,8 @@ class Public::PatientsController < ApplicationController
   def withdraw
     @patient = current_patient
     @patient.update(is_unsubscribe_flag: true)
+    reset_session
+    flash[:notice] = "退会が完了しました"
     redirect_to root_path
   end
   
