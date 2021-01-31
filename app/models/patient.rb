@@ -10,6 +10,10 @@ class Patient < ApplicationRecord
   
   enum sex: { 男性: 0, 女性: 1}
   
+  def active_for_authentication?
+    super && (self.is_unsubscribe_flag == false)
+  end
+  
   def self.looks(searches, words)
     if searches == "perfect_match"
       @patient = Patient.where("id LIKE ?", "#{words}").or(where("last_name_kana LIKE ?", "#{words}"))
