@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :patients, controllers: {
     registrations: 'patients/registrations',
-    #passwords:     'patients/passwords',
+    # passwords:     'patients/passwords',
     sessions: 'patients/sessions'
   }
   devise_for :admin, controllers: {
