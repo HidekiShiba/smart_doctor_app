@@ -45,7 +45,9 @@
           <td><h6>詳細</h6></td>
           <td><%= @information.body %></td>
         </tr>
+          <% if patient_signed_in? %>
           <p id="favorite-btn-<%= @information.id %>"><%= render "public/favorites/favorite-btn", information: @information %></p>
+          <% end %>
       </table>
     </div>
   </div>

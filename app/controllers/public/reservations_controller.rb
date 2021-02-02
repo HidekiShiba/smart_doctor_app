@@ -1,4 +1,5 @@
 class Public::ReservationsController < ApplicationController
+  
   def index
     @reservation = Reservation.new
     @reservations = Reservation.all
@@ -30,6 +31,9 @@ class Public::ReservationsController < ApplicationController
   end
   
   def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_to reservations_path
   end
   
   private
