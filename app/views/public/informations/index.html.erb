@@ -42,7 +42,9 @@
                     </div>
                   </div>
                 <td><%= link_to information.subject, information_path(information.id)  %></td>
+                <% if patient_signed_in? %>
                 <td id="favorite-btn-<%= information.id %>"><%= render "public/favorites/favorite-btn", information: information %></td>
+                <% end %>
               </tr>
           <% end %>
       </table>
