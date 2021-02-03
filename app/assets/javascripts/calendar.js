@@ -65,7 +65,6 @@ function eventCalendar() {
       $(".input-start").val(moment(startDate).format("YYYY-MM-DD HH:mm"));
       $(".input-end").val(moment(endDate).format("YYYY-MM-DD HH:mm"));
       $('#edit_reservation').modal('hide');
-
     }
   })
 }

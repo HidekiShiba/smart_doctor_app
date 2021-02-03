@@ -1,3 +1,44 @@
 // Place all the styles related to the public::homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.main-container {
+  background-image: image-url("home.jpg");
+  background-size: cover;
+}
+
+.biz-hour {
+  border-collapse: collapse;
+}
+@media screen and (max-width: 414px) {
+  .biz-hour {/* スマホのときだけ親要素いっぱいに */
+    width: 100%;
+  }
+}
+.biz-hour th {
+  /* １番上の線 */
+  /* #A28C63っていうのが色の名前なので、ここをお好みで */
+  border-top: 1px solid #A28C63;
+}
+.biz-hour th, .biz-hour td {
+  padding: 10px 20px;
+  text-align: center;
+  /* ２番目以降の線 */
+  /* 色はお好みで */
+  border-bottom: 1px solid #A28C63;
+}
+
+/* 上段の背景色 */
+.biz-hour th {
+  /* background: pink; */
+  font-weight: normal;
+}
+
+/* 土曜日の文字色 */
+.biz-hour th.sat {
+  color: #3db2da;
+}
+
+/* 日曜日の文字色 */
+.biz-hour th.sun {
+  color: #e66a6a;
+}

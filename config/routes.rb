@@ -19,7 +19,11 @@ Rails.application.routes.draw do
       end
     end
     resources :congestions, only: [:index]
-    resources :reservations, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :reservations, only: [:index, :create, :show, :edit, :update, :destroy] do
+      collection do
+        post 'confirm'
+      end
+    end
     resources :examinations, only: [:index, :show]
     resources :receptions, only: [:index, :new, :create, :destroy]
     resources :informations, only: [:index, :show] do

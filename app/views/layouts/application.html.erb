@@ -8,10 +8,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-info bg-warning">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F0E68C;">
         <div class="container">
           <a class="navbar-brand p-3" href="/">病院ロゴ</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,37 +19,37 @@
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
                   <% if patient_signed_in? %>
-                    <p class="text-light mt-2">ようこそ、<%= current_patient.last_name %>さん！</p>
+                    <p class=".text-secondary mt-2">ようこそ、<%= current_patient.last_name %>さん！</p>
                     <li class="nav-item">
-                      <%= link_to 'お知らせ', informations_path, class:"nav-link btn btn-sm btn-outline-light ml-5" %>
+                      <%= link_to 'お知らせ', informations_path, class: "fas fa-microphone nav-link btn btn-sm btn-outline-light ml-3" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to 'マイページ', patient_path(current_patient.id), class:"nav-link btn btn-sm btn-outline-light ml-5"  %>
+                      <%= link_to 'マイページ', patient_path(current_patient.id), class: "fas fa-user nav-link btn btn-sm btn-outline-light ml-3"  %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to '空き状況', congestions_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to '空き状況', congestions_path, class: "fas fa-clock nav-link btn btn-sm  btn-outline-light ml-3" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to 'ログアウト', destroy_patient_session_path, method: :delete, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to 'ログアウト', destroy_patient_session_path, method: :delete, class: "fas fa-lock nav-link btn btn-sm  btn-outline-light ml-3" %>
                     </li>
                   <% elsif admin_signed_in? %>
                     <li class="nav-item">
-                      <%= link_to '予約一覧', admin_reservations_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to '予約一覧', admin_reservations_path, class: "fas fa-user-clock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to '受診一覧', admin_examinations_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to '受診一覧', admin_examinations_path, class: "fas fa-user-plus nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to '患者一覧', admin_patients_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to '患者一覧', admin_patients_path, class: "fas fa-user-lock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to 'お知らせ一覧', admin_informations_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to 'お知らせ一覧', admin_informations_path, class: "fas fa-microphone nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to 'テーマ一覧', admin_themes_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to 'テーマ一覧', admin_themes_path, class:"fas fa-pencil-alt nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "fas fa-lock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <%= form_with url: search_path, method: :get, local: :true do |f| %>
                           <%= f.select :range, options_for_select([['Patient'], ['Reservation'], ['Reception'], ['Examination']]) %>
@@ -60,19 +59,19 @@
                     <% end %>
                   <% else %>
                     <li class="nav-item">
-                      <%= link_to '施設紹介', about_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to '施設紹介', about_path, class:"fas fa-clinic-medical nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to 'お知らせ', informations_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to 'お知らせ', informations_path, class: "fas fa-microphone nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to '空き状況', congestions_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to '空き状況', congestions_path, class: "fas fa-clock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to '新規登録', new_patient_registration_path, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to '新規登録', new_patient_registration_path, class: "fas fa-lock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to 'ログイン', patient_session_path, method: :post, class:"nav-link btn btn-sm  btn-outline-light ml-5" %>
+                      <%= link_to 'ログイン', patient_session_path, method: :post, class: "fas fa-lock-open nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                   <% end %>
                 </ul>
@@ -84,11 +83,11 @@
     <%= yield %>
     </main>
     <footer>
-      <nav class="navbar navbar-expand-lg navbar-info">
-        <div class="container d-flex justify-content-center">
+      <nav class="navbar navbar-expand-lg navbar-info" style="background-color: #F0E68C;">
+        <div class="container justify-content-center">
           <div class="row">
             <div class>
-              <p class="mt-4">Copyright ©SmartDoctor. All Rights Reserved</p>
+              <p class="mt-3">Copyright ©SmartDoctor. All Rights Reserved</p>
             </div>
           </div>
         </div>

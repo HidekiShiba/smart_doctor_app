@@ -5,8 +5,9 @@ class Public::ReservationsController < ApplicationController
     @reservations = Reservation.all
   end
 
-  def new
-    @reservation = Reservation.new
+  def confirm
+    @reservation = Reservation.new(reservation_params)
+    @reservation.patient_id = current_patient.id
   end
   
   def create
