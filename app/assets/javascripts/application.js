@@ -20,6 +20,5 @@
 //= require moment.min
 //= require fullcalendar.min
 //= require ja
-//= require turbolinks
 //= require jquery.jpostal
 //= require_tree .
