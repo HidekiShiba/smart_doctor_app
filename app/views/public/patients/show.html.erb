@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-1">
-      <h5 class="ml-5 mt-5">マイページ</h5><br />
+      <h5 class="mt-5 fas fa-user-circle">マイページ</h5><br/>
       <table class="table-sm">
         <tr>
-          <td><strong>登録情報　</strong></td>
+          <td><strong class="fas fa-user-cog">登録情報</strong></td>
           <td><%= link_to '編集する', edit_patient_path, class:"btn btn-sm btn-outline-primary" %></td>
        </tr>
       </table>
@@ -21,3 +21,60 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <td><strong  class="fas fa-medkit">当日受付状況</strong></td>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>受診開始日時</th>
+              <th>整理券発行日時</th>
+              <th>発行時待ち人数</th>
+              <th>発行時待ち時間</th>
+              <th>受診ステータス</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @receptions.each do |reception| %>
+            <tr>
+              <td><%= link_to reception.start_time.strftime("%Y/%m/%d %H:%M"), reception_path(reception.id) %></td>
+              <td><%= reception.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= reception.number %></td>
+              <td><%= reception.congestion.time %></td>
+              <td><%= reception.examination_status %></td>
+            </tr>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <td><strong  class="fas fa-medkit">予約状況</strong></td>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>受診開始日時</th>
+              <th>予約完了日時</th>
+              <th>症状</th>
+              <th>受診目的</th>
+              <th>受診ステータス</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @reservations.each do |reservation| %>
+            <tr>
+              <td><%= link_to reservation.start_time.strftime("%Y/%m/%d %H:%M"), reservation_path(reservation.id) %></td>
+              <td><%= reservation.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= reservation.symptom %></td>
+              <td><%= reservation.purpose %></td>
+              <td><%= reservation.examination_status %></td>
+            </tr>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>
+

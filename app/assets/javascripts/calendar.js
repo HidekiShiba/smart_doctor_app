@@ -71,4 +71,11 @@ function eventCalendar() {
 
 document.addEventListener('DOMContentLoaded', function() {
   eventCalendar()
+  
+  $(".input-start").val(formatTime(".input-start"));
+  $(".input-end").val(formatTime(".input-end"));
 })
+
+function formatTime(selector) {
+  return $(selector).val().replace(/:00 \+0900/g, "");
+}
