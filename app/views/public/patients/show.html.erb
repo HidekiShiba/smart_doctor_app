@@ -24,7 +24,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-1">
-      <td><strong  class="fas fa-medkit">当日受付状況</strong></td>
+      <td><strong  class="fas fa-running">当日受付状況</strong></td>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -38,10 +38,10 @@
           </thead>
           <% @receptions.each do |reception| %>
             <tr>
-              <td><%= link_to reception.start_time.strftime("%Y/%m/%d %H:%M"), reception_path(reception.id) %></td>
+              <td><%= reception.start_time.strftime("%Y/%m/%d %H:%M") %></td>
               <td><%= reception.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-              <td><%= reception.number %></td>
-              <td><%= reception.congestion.time %></td>
+              <td><%= reception.number %>人</td>
+              <td><%= reception.congestion.time %>分</td>
               <td><%= reception.examination_status %></td>
             </tr>
           <% end %>
@@ -77,4 +77,34 @@
     </div>
   </div>
 </div>
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <td><strong  class="fas fa-laptop-medical">受診履歴</strong></td>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>受診開始日時</th>
+              <th>履歴作成日時</th>
+              <th>診断</th>
+              <th>処置</th>
+              <th>処方箋</th>
+              <th>入力ステータスス</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @examinations.each do |examination| %>
+            <tr>
+              <td><%= link_to examination.reservation.start_time.strftime("%Y/%m/%d %H:%M"), examination_path(examination.id) %></td>
+              <td><%= examination.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= examination.diagnosis %></td>
+              <td><%= examination.treatment %></td>
+              <td><%= examination.prescription_status %></td>
+              <td><%= examination.update_status %></td>
+            </tr>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>
+<%= paginate @examinations %>
