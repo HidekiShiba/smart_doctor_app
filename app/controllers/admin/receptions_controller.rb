@@ -15,13 +15,13 @@ class Admin::ReceptionsController < ApplicationController
        @examination.reception_id = @reception.id
        @examination.save
     end
-    redirect_to request.referer
+    redirect_to request.referer, warning: '受診情報を更新し、新規受診履歴を作成しました'
   end
   
   def destroy
     @reception = Reception.find(params[:id])
     @reception.destroy
-    redirect_to request.referer
+    redirect_to request.referer, danger: '当日受付を削除しました'
   end
   
   private

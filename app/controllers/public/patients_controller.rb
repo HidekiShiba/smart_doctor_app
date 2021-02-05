@@ -15,16 +15,18 @@ class Public::PatientsController < ApplicationController
   
   def update
     @patient = current_patient
-    @patient.update(patient_params)
-    redirect_to patient_path(current_patient)
+    if @patient.update(patient_params)
+      redirect_to patient_path(current_patient), warning: 'プロフィールを更新しました'
+    else
+      render :edit
+    end
   end
   
   def withdraw
     @patient = current_patient
     @patient.update(is_unsubscribe_flag: true)
     reset_session
-    flash[:notice] = "退会が完了しました"
-    redirect_to root_path
+    redirect_to root_path, danger: '退会が完了しました'
   end
   
   private

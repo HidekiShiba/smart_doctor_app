@@ -2,9 +2,10 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-10 offset-1">
-      <h5>ログイン</h5><br />
+      <h5 class="mt-5 mr-0 mb-3 fas fa-lock-open">ログイン</h5><br/>
       <h6 class="mb-3">登録済の方はこちらからログイン</h6>
       <%= form_with model: @patient, url: patient_session_path, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
         <table class="table-sm ml-5">
           <tbody class="mt-3">
             <tr>
@@ -23,7 +24,7 @@
         </table>
       <% end %>
       <h6 class="mt-5">会員登録がお済みでない方</h6>
-      <p class="ml-5"><%= link_to 'こちら', new_patient_registration_path %>　から新規登録を行ってください。</p>
+      <p class="ml-5"><%= link_to 'こちら', new_patient_registration_path, class: "fas fa-lock" %>　から新規登録を行ってください。</p>
     </div>
   </div>
 </div>

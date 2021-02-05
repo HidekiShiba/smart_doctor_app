@@ -1,7 +1,7 @@
 <div class="container justify-content-center mt-5">
   <div class="row">
     <div class="col-10 offset-1">
-      <%= form_with model: @reservation, remote: true do |f| %>
+      <%= form_with model: @reservation, local: true do |f| %>
         <table class="table-sm">
           <tr><td class="table-active">受診開始時間</td><td data-toggle="modal" data-target="#edit_reservation"><%= f.text_field :start_time, class: "form-control input-start"%></td></tr>
           <tr><td class="table-active">受診終了時間</td><td data-toggle="modal" data-target="#edit_reservation"><%= f.text_field :end_time, class: "form-control input-end"%></td></tr>
@@ -19,10 +19,9 @@
           <tr><td class="table-active">医師への要望</td><td><%= f.text_area :request, class: "form-control"%></td></tr>
           <%= f.hidden_field :examination_status, {value: '受診前'} %>
           <tr>
-            <td></td><td data-toggle="modal" data-target="#reservation_complete"><%= f.submit '予約確定', class: "btn btn-outline-success" %></td><td></td>
+            <td></td><td class ="btn btn-outline-success" data-toggle="modal" data-target="#reservation_complete">最終確認</td><td></td>
           </tr>
         </table>
-      <% end %>
     </div>
   </div>
 </div>
@@ -30,7 +29,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="reservation_completeLabel">予約が確定しました</h4>
+        <h4 class="modal-title" id="reservation_completeLabel">まだ予約は確定していません</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -43,12 +42,13 @@
         <p>・初診の方は受診10分前にはご来院ください</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">予約修正</button>
+        <%= f.submit '予約確定', class: "btn btn-success" %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-<!-- モーダルの設定 -->
 <div class="modal fade" id="edit_reservation" tabindex="-1" role="dialog" aria-labelledby="edit_reservationLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -63,8 +63,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-        <!--<button type="button" class="btn btn-primary">OK</button>-->
-      </div><!-- /.modal-footer -->
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+      </div>
+    </div>
+  </div>
+</div>

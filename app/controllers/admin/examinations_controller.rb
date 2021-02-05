@@ -14,7 +14,7 @@ class Admin::ExaminationsController < ApplicationController
   def update
     @examination = Examination.find(params[:id])
     @examination.update(examination_params)
-    redirect_to admin_examinations_path
+    redirect_to admin_examinations_path, success: '受診履歴を更新しました'
   end
   
   private

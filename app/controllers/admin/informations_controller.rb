@@ -9,9 +9,13 @@ class Admin::InformationsController < ApplicationController
   end
   
   def create
+    @themes = Theme.all
     @new_information = Information.new(information_params)
-    @new_information.save
-    redirect_to admin_information_path(@new_information.id)
+    if @new_information.save
+      redirect_to admin_informations_path, success: '新規のお知らせを投稿しました'
+    else
+      render :new
+    end
   end
 
   def show
@@ -24,9 +28,13 @@ class Admin::InformationsController < ApplicationController
   end
   
   def update
+    @themes = Theme.all
     @information = Information.find(params[:id])
-    @information.update(information_params)
-    redirect_to admin_information_path(@information.id)
+    if @information.update(information_params)
+      redirect_to admin_informations_path, success: 'お知らせの内容を更新しました'
+    else
+      render :edit
+    end
   end
   
   def destroy

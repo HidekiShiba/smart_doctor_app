@@ -14,7 +14,7 @@ class Public::ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.patient_id = current_patient.id
     @reservation.save
-    redirect_to reservation_path(@reservation.id)
+    redirect_to reservation_path(@reservation.id), warning: '予約を完了しました。お気をつけてお越しください'
   end
   
   def show
@@ -28,13 +28,13 @@ class Public::ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update(reservation_params)
-    redirect_to reservation_path(@reservation.id)
+    redirect_to reservation_path(@reservation.id), warning: '予約内容を更新しました。お気をつけてお越しください'
   end
   
   def destroy
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
-    redirect_to reservations_path
+    redirect_to reservations_path, danger: '予約をキャンセルしました'
   end
   
   private

@@ -4,6 +4,9 @@ class Information < ApplicationRecord
   
   attachment :image
   
+  validates :subject, presence: true, length: { maximum: 50 }
+  validates :body, presence: true, length: { maximum: 400 }
+  
   def favorited_by?(patient)
     favorites.where(patient_id: patient.id).exists?
   end

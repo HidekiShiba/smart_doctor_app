@@ -19,7 +19,7 @@ class Admin::ReservationsController < ApplicationController
        @examination.reservation_id = @reservation.id
        @examination.save
     end
-    redirect_to request.referer
+    redirect_to request.referer, warning: '受診情報を更新し、新規受診履歴を作成しました'
   end
   
   private
