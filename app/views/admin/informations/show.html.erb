@@ -10,6 +10,10 @@
     <div class="col-12">
       <table class="table-sm">
         <tr>
+          <td><h6>投稿日時</h6></td>
+          <td><%= @information.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        </tr>
+        <tr>
           <td><h6>テーマ</h6></td>
           <td><%= @information.theme.name %></td>
         </tr>

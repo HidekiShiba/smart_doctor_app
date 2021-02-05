@@ -1,7 +1,6 @@
 class Admin::ReservationsController < ApplicationController
   def index
-    @reservations = Reservation.all.page(params[:page]).order(created_at: :desc)
-    # where(examination_status: '受診済')
+    @reservations = Reservation.all
   end
 
   def show
