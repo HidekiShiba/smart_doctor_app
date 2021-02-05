@@ -12,7 +12,7 @@
     <div class="col-10 offset-1">
       <table class="table table-striped">
           <tr>
-          <td>お知らせID</td>
+          <td>投稿日時</td>
           <td>テーマ</td>
           <td>投稿画像</td>
           <td>件名</td>
@@ -20,7 +20,7 @@
           </tr>
           <% @informations.each do |information| %>
               <tr>
-                <td><%= information.id %></td>
+                <td><%= information.created_at.strftime("%Y/%m/%d %H:%M") %></td>
                 <td><%= information.theme.name %></td>
                 <td data-toggle="modal" data-target="#image_modal-<%= information.id %>">
                   <%= attachment_image_tag information, :image, fallback: "no_image.jpg", size: "240x200" %>

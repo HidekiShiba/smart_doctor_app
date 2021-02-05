@@ -1,27 +1,54 @@
-<h2>ただいまの待ち状況</h2>
-<%= @congestion.count %>
-<%= @congestion.time %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h5 class="mb-2 fas fa-running">患者表示</h5>
+      <table class="table-sm table-bordered table-striped">
+        <thead class="thead-light">
+          <tr>
+            <th>待ち人数（人）</th>
+            <th>待ち時間（分）</th>
+            <th>受診予定日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @congestion.count %></td>
+            <td><%= @congestion.time %></td>
+            <td><%= (DateTime.now + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h5 class="mb-2 fas fa-stopwatch">管理者更新</h5>
+      <table class="table-sm table-bordered table-striped">
+        <thead class="thead-light">
+          <tr>
+            <th>待ち人数（人）</th>
+            <th>待ち時間（分）</th>
+            <th>受診予定日時</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= form_with model: @congestion, url: admin_congestion_path(@congestion.id), local: true do |f| %>
+          <tr>
+            <td><%= f.number_field :count, min: 0 %></td>
+            <td><%= f.number_field :time, value: @congestion.count * 20, readonly: true %></td>
+            <td><%= (DateTime.now + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
+            <td><%= f.submit "更新", class: "btn btn-sm btn-success" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-<%= form_with model: @congestion, url: admin_congestion_path(@congestion.id), local: true do |f| %>
-<table class="table-sm table-bordered table-striped mt-3 padding-10">
-  <thead class="thead-light">
-    <tr>
-      <th>待ち人数（人）</th>
-      <th>待ち時間（分）</th>
-      <th>受診予定日時</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= f.number_field :count, min: 0 %></td>
-      <td><%= f.number_field :time, value: @congestion.count * 20, readonly: true %></td>
-      <td><%= (DateTime.now + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
-      <td><%= f.submit "更新", class: "btn btn-sm btn-success" %></td>
-    </tr>
-  </tbody>
-</table>
-<% end %>
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 offset-md-1">
