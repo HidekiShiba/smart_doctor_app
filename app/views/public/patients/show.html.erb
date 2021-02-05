@@ -95,7 +95,11 @@
           </thead>
           <% @examinations.each do |examination| %>
             <tr>
+              <% if examination.reception_id.nil? %>
               <td><%= link_to examination.reservation.start_time.strftime("%Y/%m/%d %H:%M"), examination_path(examination.id) %></td>
+              <% else %>
+              <td><%= link_to examination.reception.start_time.strftime("%Y/%m/%d %H:%M"), examination_path(examination.id) %></td>
+              <% end %>
               <td><%= examination.created_at.strftime("%Y/%m/%d %H:%M") %></td>
               <td><%= examination.diagnosis %></td>
               <td><%= examination.treatment %></td>

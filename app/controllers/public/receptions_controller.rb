@@ -1,4 +1,5 @@
 class Public::ReceptionsController < ApplicationController
+  before_action :authenticate_patient!
   def new
     @congestion = Congestion.find(1)
     @new_reception = Reception.new
@@ -14,7 +15,7 @@ class Public::ReceptionsController < ApplicationController
     @congestion = Congestion.find(1)
     @new_reception.save
     @congestion.update_attributes(count: @congestion.count + 1, time: @congestion.time + 20)
-    redirect_to congestions_path
+    redirect_to congestions_path, warning: '当日受付を完了しました。お気をつけてお越しください'
   end
   
   private
@@ -22,3 +23,4 @@ class Public::ReceptionsController < ApplicationController
     params.require(:reception).permit(:patient_id, :congestion_id, :number, :start_time,:examination_status)
   end
 end
+

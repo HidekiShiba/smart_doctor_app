@@ -6,6 +6,7 @@
           <div class="col-4">
             <div class="d-flex justify-content-start"><strong>患者ID</strong><p><%= @patient.id %></p></div>
               <%= form_with model: @patient, url: admin_patient_path, local:true do |f| %>
+              <%= render 'layouts/error_messages', model: f.object %>
                 <h6>氏名</h6>
                   <div class="d-flex justify-content-start"><%= f.text_field :last_name %><%= f.text_field :first_name %></div>
                 <h6>フリガナ</h6>

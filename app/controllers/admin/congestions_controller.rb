@@ -9,7 +9,7 @@ class Admin::CongestionsController < ApplicationController
   def update
     @congestion = Congestion.find(1)
     @congestion.update(congestion_params)
-    redirect_to request.referer
+    redirect_to request.referer, success: '混雑状況を更新しました'
   end
   
   def new
@@ -19,7 +19,7 @@ class Admin::CongestionsController < ApplicationController
   def create
     @new_congestion = Congestion.new(congestion_params)
     @new_congestion.save
-    redirect_to admin_congestions_path
+    redirect_to admin_congestions_path, success: '混雑状況を作成しました'
   end
   
   private

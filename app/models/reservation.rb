@@ -9,6 +9,17 @@ class Reservation < ApplicationRecord
   enum purpose: {処方箋のみ: 0, 診察＋処方箋: 1, 診察＋検査＋処方箋: 2}
   enum examination_status: {受診前: 0, 受診済: 1}
   
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :examination_count, presence: true
+  validates :symptom, presence: true
+  validates :body_parts, presence: true
+  validates :starting_point, presence: true
+  validates :treatment, presence: true
+  validates :side_effect, presence: true
+  validates :pregnancy, presence: true
+  validates :purpose, presence: true
+  
   # scope :between, lambda {|start_time, end_time| {:conditions => ["? < starts_at and starts_at < ?", Event.format_date(start_time), Event.format_date(end_time)] }}
   def self.looks(searches, words)
     if searches == "perfect_match"

@@ -51,8 +51,8 @@ function adminEventCalendar() {
     selectConstraint: "businessHours",
 
     events: "/admin/reservations.json",
-    // eventColor: '#FFCCCC',
-    // eventTextColor: '#000000',
+    eventColor: '#FFFF00',
+    eventTextColor: '#000000',
     // displayEventTime: false,
     overlap: false,
 

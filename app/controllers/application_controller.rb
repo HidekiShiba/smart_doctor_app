@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # before_action :authenticate_patient!,except: [:top, :about]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -9,4 +10,6 @@ class ApplicationController < ActionController::Base
       :birth_date, :sex, :postal_code, :address, :tel, :is_unsubscribe_flag
     ])
   end
+  add_flash_types :success, :info, :warning, :danger
+  protect_from_forgery with: :exception
 end

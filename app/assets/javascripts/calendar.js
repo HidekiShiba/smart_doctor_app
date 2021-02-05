@@ -4,7 +4,6 @@ function eventCalendar() {
     // ここに各種オプションを書いていくと設定が適用されていく
     // options定義
     header: {
-            // left: 'month, agendaWeek, agendaDay',
             left: 'title',
             right: 'today, prev, next'
     },
