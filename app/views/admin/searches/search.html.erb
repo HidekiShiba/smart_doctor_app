@@ -1,8 +1,8 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <% if @range == "Patient" %>
-      <h3>"<%= @word %>"の検索結果：<%= @patients.count %>件</h3>
-      <% if @patients.count == 0 %>
+    <% if @model == "patient" %>
+      <h3>"<%= @content %>"の検索結果：<%= @datas.count %>件</h3>
+      <% if @datas.count == 0 %>
         <div class="w-100">条件にあてはまる検索結果はありません</div>
       <% else %>
       <table class="table table-striped">
@@ -15,19 +15,19 @@
           </tr>
         </thead>
         <tbody>
-        <% @patients.each do |patient| %>
+        <% @datas.each do |data| %>
           <tr>
-            <td><%= patient.id %></td>
+            <td><%= data.id %></td>
             <td>
-              <%= link_to admin_patient_path(patient.id) do %>
-                <%= patient.last_name + patient.first_name %>
+              <%= link_to admin_patient_path(data.id) do %>
+                <%= data.last_name + data.first_name %>
               <% end %>
             </td>
-            <td><%= patient.email %></td>
+            <td><%= data.email %></td>
             <td>
-              <% if patient.is_unsubscribe_flag == false %>
+              <% if data.is_unsubscribe_flag == false %>
                   有効会員
-              <% elsif patient.is_unsubscribe_flag == true %>
+              <% elsif data.is_unsubscribe_flag == true %>
                   無効会員
               <% end %>
             </td>
@@ -36,9 +36,9 @@
         </tbody>
       </table>
       <% end %>
-    <% elsif @range == "Reservation" %>
-      <h3>"<%= @word %>"の検索結果：<%= @reservations.count %>件</h3>
-      <% if @reservations.count == 0 %>
+      <% elsif @model == "reservation" %>
+      <h3>"<%= @content %>"の検索結果：<%= @datas.count %>件</h3>
+      <% if @datas.count == 0 %>
         <div class="w-100">条件にあてはまる検索結果はありません</div>
       <% else %>
         <table class="table table-striped">
@@ -53,19 +53,19 @@
             <th></th>
           </tr>
         </thead>
-        <% @reservations.each do |reservation| %>
+        <% @datas.each do |data| %>
         <tr>
           <td>
-            <%= link_to admin_reservation_path(reservation.id) do %>
-              <%= reservation.start_time.strftime("%Y/%m/%d %H:%M") %>
+            <%= link_to admin_reservation_path(data.id) do %>
+              <%= data.start_time.strftime("%Y/%m/%d %H:%M") %>
             <% end %>
           </td>
-          <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-          <td><%= reservation.patient.id %></td>
-          <td><%= reservation.patient.last_name + reservation.patient.first_name %></td>
-          <td><%= reservation.patient.sex %></td>
+          <td><%= data.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+          <td><%= data.patient.id %></td>
+          <td><%= data.patient.last_name + data.patient.first_name %></td>
+          <td><%= data.patient.sex %></td>
           <td>
-            <%= form_with model: reservation, url: admin_reservation_path(reservation.id), local: true do |f| %>
+            <%= form_with model: data, url: admin_reservation_path(data.id), local: true do |f| %>
               <%= f.select :examination_status, Reservation.examination_statuses.keys %>
               <%= f.submit "変更", class:"btn btn-sm btn-success"%>
             <% end %>
@@ -74,9 +74,9 @@
         <% end %>
       </table>
       <% end %>
-    <% elsif @range == "Reception" %>
-      <h3>"<%= @word %>"の検索結果：<%= @receptions.count %>件</h3>
-      <% if @receptions.count == 0 %>
+    <% elsif @model == "reception" %>
+      <h3>"<%= @content %>"の検索結果：<%= @datas.count %>件</h3>
+      <% if @datas.count == 0 %>
         <div class="w-100">条件にあてはまる検索結果はありません</div>
       <% else %>
         <table class="table table-striped">
@@ -91,19 +91,19 @@
             <th></th>
           </tr>
         </thead>
-        <% @receptions.each do |reception| %>
+        <% @datas.each do |data| %>
         <tr>
           <td>
-            <%= link_to admin_reception_path(reception.id) do %>
-              <%= reception.start_time.strftime("%Y/%m/%d %H:%M") %>
+            <%= link_to admin_reception_path(data.id) do %>
+              <%= data.start_time.strftime("%Y/%m/%d %H:%M") %>
             <% end %>
           </td>
-          <td><%= reception.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-          <td><%= reception.patient.id %></td>
-          <td><%= reception.patient.last_name + reception.patient.first_name %></td>
-          <td><%= reception.patient.sex %></td>
+          <td><%= data.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+          <td><%= data.patient.id %></td>
+          <td><%= data.patient.last_name + data.patient.first_name %></td>
+          <td><%= data.patient.sex %></td>
           <td>
-            <%= form_with model: reception, url: admin_reception_path(reception.id), local: true do |f| %>
+            <%= form_with model: data, url: admin_reception_path(data.id), local: true do |f| %>
               <%= f.select :examination_status, Reception.examination_statuses.keys %>
               <%= f.submit "変更", class:"btn btn-sm btn-success"%>
             <% end %>
@@ -113,8 +113,8 @@
       </table>
       <% end %>
     <% else %>
-      <h3>"<%= @word %>"の検索結果：<%= @examinations.count %>件</h3>
-      <% if @examinations.count == 0 %>
+      <h3>"<%= @content %>"の検索結果：<%= @datas.count %>件</h3>
+      <% if @datas.count == 0 %>
         <div class="w-100">条件にあてはまる検索結果はありません</div>
       <% else %>
         <table class="table table-striped">
@@ -129,31 +129,31 @@
             <th></th>
           </tr>
         </thead>
-        <% @examinations.each do |examination| %>
+        <% @datas.each do |data| %>
         <tr>
-          <% if examination.reception_id.nil? %>
+          <% if data.reception_id.nil? %>
           <td>
-            <%= link_to admin_examination_path(examination.id) do %>
-              <%= examination.reservation.start_time.strftime("%Y/%m/%d %H:%M") %>
+            <%= link_to admin_examination_path(data.id) do %>
+              <%= data.reservation.start_time.strftime("%Y/%m/%d %H:%M") %>
             <% end %>
           </td>
-          <td><%= examination.reservation.patient.id %></td>
-          <td><%= examination.reservation.patient.last_name + examination.reservation.patient.first_name %></td>
-          <td><%= examination.reservation.patient.birth_date.strftime("%Y/%m/%d") %></td>
-          <td><%= examination.reservation.patient.sex %></td>
+          <td><%= data.reservation.patient.id %></td>
+          <td><%= data.reservation.patient.last_name + data.reservation.patient.first_name %></td>
+          <td><%= data.reservation.patient.birth_date.strftime("%Y/%m/%d") %></td>
+          <td><%= data.reservation.patient.sex %></td>
           <% else %>
           <td>
-            <%= link_to admin_examination_path(examination.id) do %>
-              <%= examination.reception.start_time.strftime("%Y/%m/%d %H:%M") %>
+            <%= link_to admin_examination_path(data.id) do %>
+              <%= data.reception.start_time.strftime("%Y/%m/%d %H:%M") %>
             <% end %>
           </td>
-          <td><%= examination.reception.patient.id %></td>
-          <td><%= examination.reception.patient.last_name + examination.reception.patient.first_name %></td>
-          <td><%= examination.reception.patient.birth_date.strftime("%Y/%m/%d") %></td>
-          <td><%= examination.reception.patient.sex %></td>
+          <td><%= data.reception.patient.id %></td>
+          <td><%= data.reception.patient.last_name + data.reception.patient.first_name %></td>
+          <td><%= data.reception.patient.birth_date.strftime("%Y/%m/%d") %></td>
+          <td><%= data.reception.patient.sex %></td>
           <% end %>
           <td>
-            <%= form_with model: examination, url: admin_examination_path(examination.id), local: true do |f| %>
+            <%= form_with model: data, url: admin_examination_path(data.id), local: true do |f| %>
               <%= f.select :update_status, Examination.update_statuses.keys %>
               <%= f.submit "変更", class:"btn btn-sm btn-success"%>
             <% end %>
@@ -165,5 +165,3 @@
     <% end %>
   </div>
 </div>
-
-

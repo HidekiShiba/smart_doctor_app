@@ -1,10 +1,14 @@
 class Public::SearchesController < ApplicationController
   def search
-    @range = params[:range]
-
-    if @range == "Information"
-      @word = params[:word]
-      @informations = Information.looks(params[:search], params[:word])
+    @model = params["search"]["model"]
+    @content = params["search"]["content"]
+    @datas = partical(@model, @content)
+  end
+  
+  private
+  def partical(model, content)
+    if model == 'information'
+      Information.where("subject LIKE ?", "%#{content}%").or(Information.where("body LIKE ?", "%#{content}%"))
     end
   end
 end

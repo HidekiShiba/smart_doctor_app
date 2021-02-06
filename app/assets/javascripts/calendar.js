@@ -35,6 +35,7 @@ function eventCalendar() {
     selectable: true,
     selectHelper: true,
     eventStartEditable: false,
+    
 
     businessHours: true,
     businessHours:[{

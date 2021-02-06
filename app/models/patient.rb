@@ -20,20 +20,4 @@ class Patient < ApplicationRecord
   validates :address, presence: true
   validates :tel, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  
-  # def active_for_authentication?
-    # super && (self.is_unsubscribe_flag == false)
-  # end
-  
-  def self.looks(searches, words)
-    if searches == "perfect_match"
-      @patient = Patient.where("id LIKE ?", "#{words}").or(Patient.where("last_name_kana LIKE ?", "#{words}"))
-    elsif searches == "partial_match"
-      @patient = Patient.where("id LIKE ?", "%#{words}%").or(Patient.where("last_name_kana LIKE ?", "%#{words}%"))
-    elsif searches == "forward_match"
-      @patient = Patient.where("id LIKE ?", "#{words}%").or(Patient.where("last_name_kana LIKE ?", "#{words}%"))
-    else
-      @patient = Patient.where("id LIKE ?", "%#{words}").or(Patient.where("last_name_kana LIKE ?", "%#{words}"))
-    end
-  end
 end
