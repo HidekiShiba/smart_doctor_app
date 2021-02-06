@@ -1,0 +1,39 @@
+ja:
+  activerecord:
+    models:
+      patient: 患者
+      reservation: 予約
+      examination: 受診履歴
+      congestion: 混雑状況
+      reception: 当日受付
+      theme: テーマ
+      information: お知らせ
+    attributes:
+      patient:
+        last_name: 姓
+        first_name: 名
+        last_name_kana: 姓カナ
+        first_name_kana: 名カナ
+        birth_date: 生年月日
+        sex: 性別
+        postal_code: 郵便番号
+        address: 住所
+        tel: 電話番号
+        email: メールアドレス
+        encrypted_password: パスワード
+      reservation:
+        start_time: 受診開始時間
+        end_time: 受診終了時間
+        examination_count: 受診回数
+        symptom: 症状
+        body_parts: 身体部位
+        starting_point: 症状日
+        treatment: 治療の有無
+        side_effect: 副作用の有無
+        pregnancy: 妊娠の有無
+        purpose: 受診目的
+      theme:
+        name: テーマ名
+      information:
+        subject: 件名
+        body: 本文

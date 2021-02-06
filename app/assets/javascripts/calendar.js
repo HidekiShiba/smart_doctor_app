@@ -18,7 +18,7 @@ function eventCalendar() {
         end: nowDate.clone().add(1, 'months')
       };
     },
-    
+
     timeZone: 'Asia/Tokyo',
     locales: 'ja',
     defaultView: 'agendaWeek',
@@ -60,17 +60,21 @@ function eventCalendar() {
 
     select: function(startDate, endDate) {
       // alert('selected ' + startDate.format() + ' to ' + endDate.format());
-      $('#new_reservation').modal('show');
-      $(".input-start").val(moment(startDate).format("YYYY-MM-DD HH:mm"));
-      $(".input-end").val(moment(endDate).format("YYYY-MM-DD HH:mm"));
-      $('#edit_reservation').modal('hide');
+      if(!$("#patient-name").length > 0) {
+        window.location.replace("./patients/sign_in")
+      } else {
+    　　$('#new_reservation').modal('show');
+        $(".input-start").val(moment(startDate).format("YYYY-MM-DD HH:mm"));
+        $(".input-end").val(moment(endDate).format("YYYY-MM-DD HH:mm"));
+        $('#edit_reservation').modal('hide');
+      }
     }
   })
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   eventCalendar()
-  
+
   $(".input-start").val(formatTime(".input-start"));
   $(".input-end").val(formatTime(".input-end"));
 })
