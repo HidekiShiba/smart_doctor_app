@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h5 class="mb-2 fas fa-running">ただいまの待ち状況</h5>
+      <h5 class="mb-2 fas fa-running">ただいまの待ち状況</h5><h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
       <table class="table-sm table-bordered table-striped">
         <thead class="thead-light">
           <tr>

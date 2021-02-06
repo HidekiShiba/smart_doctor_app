@@ -51,12 +51,13 @@
                     <li class="nav-item">
                       <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "fas fa-lock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
-                    <%= form_with url: search_path, method: :get, local: :true do |f| %>
-                          <%= f.select :range, options_for_select([['Patient'], ['Reservation'], ['Reception'], ['Examination']]) %>
-                          <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %>
-                          <%= f.text_field :word %>
-                          <%= f.submit "検索" %>
-                    <% end %>
+                    <div class="search-form">
+                      <%= form_tag(admin_search_path, method: :get) do %>
+                        <%= text_field_tag 'search[content]' %>
+                        <%= select_tag 'search[model]', options_for_select({ "患者情報" => "patient", "予約情報" => "reservation", "当日受付" => "reception", "受診履歴" => "examination" }) %>
+                        <%= submit_tag '検索', class: "btn btn-primary" %>
+                      <% end %>
+                    </div>
                   <% else %>
                     <li class="nav-item">
                       <%= link_to '施設紹介', about_path, class:"fas fa-clinic-medical nav-link btn btn-sm  btn-outline-light ml-5" %>

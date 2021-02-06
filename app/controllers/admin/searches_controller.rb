@@ -1,15 +1,20 @@
 class Admin::SearchesController < ApplicationController
   def search
-    @range = params[:range]
-
-    if @range == "Patient"
-      @patients = Patient.looks(params[:search], params[:word])
-    elsif @range == "Reservation"
-      @reservations = Reservation.looks(params[:search], params[:word])
-    elsif @range == "Reception"
-      @receptions = Reception.looks(params[:search], params[:word])
-    else
-      @examinations = Examination.looks(params[:search], params[:word])
+    @model = params["search"]["model"]
+    @content = params["search"]["content"]
+    @datas = partical(@model, @content)
+  end
+  
+  private
+  def partical(model, content)
+    if model == 'patient'
+      Patient.where("last_name_kana LIKE ?", "%#{content}%")
+    elsif model == 'reservation'
+      Reservation.where("start_time LIKE ?", "%#{content}%")
+    elsif model == 'reception'
+      Reception.where("start_time LIKE ?", "%#{content}%")
+    elsif model == 'examination'
+      Examination.where("created_at LIKE ?", "%#{content}%")  
     end
   end
 end

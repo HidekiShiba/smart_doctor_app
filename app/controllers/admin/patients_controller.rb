@@ -1,4 +1,5 @@
 class Admin::PatientsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @patients = Patient.page(params[:page])
   end

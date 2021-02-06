@@ -1,4 +1,5 @@
 class Admin::ReceptionsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @receptions = Reception.all.page(params[:page])
   end

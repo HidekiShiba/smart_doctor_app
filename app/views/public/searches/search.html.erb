@@ -1,8 +1,8 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <% if @range == "Information" %>
-      <h2>"<%= @word %>"の検索結果：<%= @informations.count %>件</h2>
-      <% if @informations.count == 0 %>
+    <% if @model == "information" %>
+      <h2>"<%= @content %>"の検索結果：<%= @datas.count %>件</h2>
+      <% if @datas.count == 0 %>
         <div class="w-100">条件にあてはまる検索結果はありません</div>
       <% else %>
       <table class="table">
@@ -15,12 +15,12 @@
           </tr>
         </thead>
         <tbody>
-          <% @informations.each do |information| %>
+          <% @datas.each do |data| %>
             <tr>
-              <td><%= information.id %></td>
-              <td><%= information.theme.name %></td>
-              <td><%= link_to attachment_image_tag(information, :image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60"), information_path(information.id) %></td>
-              <td><%= link_to information.subject, information_path(information.id) %></td>
+              <td><%= data.id %></td>
+              <td><%= data.theme.name %></td>
+              <td><%= link_to attachment_image_tag(data, :image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60"), information_path(data.id) %></td>
+              <td><%= link_to data.subject, information_path(data.id) %></td>
             </tr>
           <% end %>
         </tbody>

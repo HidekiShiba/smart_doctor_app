@@ -1,4 +1,5 @@
 class Admin::CongestionsController < ApplicationController
+  before_action :authenticate_admin!
   require 'date'
   def index
     @congestion = Congestion.find(1)

@@ -17,6 +17,10 @@ class Public::ReservationsController < ApplicationController
     else
       render :confirm
     end
+    # if
+    # else
+      # redirect_to request.referer, danger: '受診当日はすでに予約済み'
+    # end
   end
   
   def show

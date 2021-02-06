@@ -1,4 +1,5 @@
 class Admin::ThemesController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @new_theme = Theme.new
     @themes = Theme.all
