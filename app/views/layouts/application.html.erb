@@ -19,7 +19,7 @@
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
                   <% if patient_signed_in? %>
-                    <p class=".text-secondary mt-2">ようこそ、<%= current_patient.last_name %>さん！</p>
+                    <p id="patient-name" class=".text-secondary mt-2">ようこそ、<%= current_patient.last_name %>さん！</p>
                     <li class="nav-item">
                       <%= link_to 'お知らせ', informations_path, class: "fas fa-microphone nav-link btn btn-sm btn-outline-light ml-3" %>
                     </li>

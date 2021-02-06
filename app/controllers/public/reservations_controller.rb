@@ -1,5 +1,4 @@
 class Public::ReservationsController < ApplicationController
-  
   def index
     @reservation = Reservation.new
     @reservations = Reservation.all
@@ -8,7 +7,6 @@ class Public::ReservationsController < ApplicationController
   def confirm
     @reservation = Reservation.new(reservation_params)
     @reservation.patient_id = current_patient.id
-    return if @reservation.valid?
   end
   
   def create
