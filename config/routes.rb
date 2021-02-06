@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   devise_for :patients, controllers: {
     registrations: 'patients/registrations',
-    # passwords:     'patients/passwords',
-    sessions: 'patients/sessions'
+    sessions:      'patients/sessions',
+    passwords:     'patients/passwords'
   }
   devise_for :admin, controllers: {
-    sessions: 'admins/sessions'
+    sessions:      'admins/sessions'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
