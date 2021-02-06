@@ -6,6 +6,10 @@
       <%= render 'layouts/error_messages', model: f.object %>
       <table class="table-sm">
         <tr>
+          <td class="badge badge-danger">全項目入力必須</td>
+          <td></td>
+        </tr>
+        <tr>
           <td>名前　　　　　　　　(姓)　</td>
           <td><%= f.text_field :last_name, autofocus: true %></td>
           <td>(名)　　<%= f.text_field :first_name, autofocus: true %></td>
@@ -64,3 +68,4 @@
     </div>
   </div>
 </div>
+
