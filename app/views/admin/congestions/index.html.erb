@@ -14,7 +14,7 @@
           <tr>
             <td><%= @congestion.count %></td>
             <td><%= @congestion.time %></td>
-            <td><%= (DateTime.now + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
+            <td><%= (DateTime.now + Rational(9, 24) + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
           </tr>
         </tbody>
       </table>
@@ -39,7 +39,7 @@
           <tr>
             <td><%= f.number_field :count, min: 0 %></td>
             <td><%= f.number_field :time, value: @congestion.count * 20, readonly: true %></td>
-            <td><%= (DateTime.now + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
+            <td><%= (DateTime.now + Rational(9, 24) + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
             <td><%= f.submit "更新", class: "btn btn-sm btn-success" %></td>
           </tr>
           <% end %>

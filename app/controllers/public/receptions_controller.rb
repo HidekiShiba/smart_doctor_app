@@ -13,14 +13,12 @@ class Public::ReceptionsController < ApplicationController
   def create
     @new_reception = Reception.new(reception_params)
     @congestion = Congestion.find(1)
-    @new_reception.save
-    @congestion.update_attributes(count: @congestion.count + 1, time: @congestion.time + 20)
-    redirect_to patient_path(current_patient.id), warning: '当日受付を完了しました。お気をつけてお越しください'
-    # if
-    # else
-      # redirect_to request.referer, danger: '当日受付はすでに発行済みです'
-    # end
-    # redirect_to request.referer, danger: '当日受付時間外です。9:00-19:00の間に受付してください。'
+    if @new_reception.save
+      @congestion.update_attributes(count: @congestion.count + 1, time: @congestion.time + 20)
+      redirect_to patient_path(current_patient.id), warning: '当日受付を完了しました。お気をつけてお越しください'
+    else
+      render :new
+    end
   end
   
   private
