@@ -1,25 +1,26 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h5 class="mb-2 fas fa-running">ただいまの待ち状況</h5><h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
-      <table class="table-sm table-bordered table-striped">
-        <thead class="thead-light">
-          <tr>
-            <th>待ち人数（人）</th>
-            <th>待ち時間（分）</th>
-            <th>受診予定日時</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @congestion.count %></td>
-            <td><%= @congestion.time %></td>
-            <td><%= (DateTime.now + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
-          </tr>
-        </tbody>
-      </table>
-      <h6 class="mt-5">当日受付をご希望の方</h6>
-      <p><%= link_to '整理券発行ページへ', new_reception_path, class: "fas fa-running" %></p>
+      <h5 class="mb-2 fas fa-running">ただいまの待ち状況</h5></br>
+        <h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
+        <table class="table-sm table-bordered table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>待ち人数（人）</th>
+              <th>待ち時間（分）</th>
+              <th>受診予定日時</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @congestion.count %></td>
+              <td><%= @congestion.time %></td>
+              <td><%= (DateTime.now + Rational(9, 24) + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
+            </tr>
+          </tbody>
+        </table>
+        <h6 class="mt-5">当日受付をご希望の方</h6>
+        <p><%= link_to '整理券発行ページへ', new_reception_path, class: "fas fa-running" %></p>
     </div>
   </div>
 </div>

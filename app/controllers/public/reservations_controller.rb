@@ -8,7 +8,7 @@ class Public::ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.patient_id = current_patient.id
   end
-  
+
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.patient_id = current_patient.id
@@ -17,12 +17,8 @@ class Public::ReservationsController < ApplicationController
     else
       render :confirm
     end
-    # if
-    # else
-      # redirect_to request.referer, danger: '受診当日はすでに予約済み'
-    # end
   end
-  
+
   def show
     @reservation = Reservation.find(params[:id])
   end
@@ -30,7 +26,7 @@ class Public::ReservationsController < ApplicationController
   def edit
     @reservation = Reservation.find(params[:id])
   end
-  
+
   def update
     @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
@@ -39,7 +35,7 @@ class Public::ReservationsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @reservation = Reservation.find(params[:id])
     if @reservation.destroy
@@ -48,7 +44,7 @@ class Public::ReservationsController < ApplicationController
       render :show
     end
   end
-  
+
   private
   def reservation_params
     params.require(:reservation).permit(
