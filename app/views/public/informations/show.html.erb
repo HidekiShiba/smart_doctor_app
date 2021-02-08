@@ -1,16 +1,18 @@
-<div class="search-form">
-  <%= form_tag(search_path, method: :get) do %>
-    <%= text_field_tag 'search[content]' %>
-    <%= select_tag 'search[model]', options_for_select({ "お知らせ" => "information" }) %>
-    <%= submit_tag '検索', class: "btn btn-primary" %>
-  <% end %>
-</div>
 <div class="container mt-5">
   <div class="row">
-    <div class="col-10 offset-1">
-    <h5 class="fas fa-microphone">お知らせ詳細</h5>
+    <div class="col-2 offset-3">
+      <h5 class="mb-4 fas fa-microphone">お知らせ詳細</h5>
     </div>
-    <div class="col-12">
+      <div class="col-4">
+        <div class="search-form-show">
+          <%= form_tag(search_path, method: :get) do %>
+            <%= text_field_tag 'search[content]' %>
+            <%= select_tag 'search[model]', options_for_select({ "お知らせ" => "information" }) %>
+            <%= submit_tag '検索', class: "btn btn-sm btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    <div class="col-6 offset-3">
       <table class="table-sm">
         <tr>
           <td><h6>投稿日時</h6></td>
@@ -31,13 +33,15 @@
           </td>
         </tr>
         <tr>
-          <td><h6>本文</h6></td>
+          <td><h6>内容</h6></td>
           <td><%= @information.body %></td>
         </tr>
         <tr>
           <td></td>
           <% if patient_signed_in? %>
           <td id="favorite-btn-<%= @information.id %>"><%= render "public/favorites/favorite-btn", information: @information %></td>
+          <% else %>
+          <td class="far fa-thumbs-up" style="color: #0000FF;"><%= @information.favorites.count %></td>
           <% end %>
         </tr>
       </table>

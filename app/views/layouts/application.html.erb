@@ -10,15 +10,15 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F0E68C;">
+      <nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color: #FFFACD;">
         <div class="container">
-          <a class="navbar-brand p-3" href="/">病院ロゴ</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ml-auto">
                   <% if patient_signed_in? %>
+                  <ul class="navbar-nav ml-auto">
+                    <a class="navbar-brand p-3" href="/">病院ロゴ</a>
                     <p id="patient-name" class=".text-secondary mt-2">ようこそ、<%= current_patient.last_name %>さん！</p>
                     <li class="nav-item">
                       <%= link_to 'お知らせ', informations_path, class: "fas fa-microphone nav-link btn btn-sm btn-outline-light ml-3" %>
@@ -32,7 +32,12 @@
                     <li class="nav-item">
                       <%= link_to 'ログアウト', destroy_patient_session_path, method: :delete, class: "fas fa-lock nav-link btn btn-sm  btn-outline-light ml-3" %>
                     </li>
+                  </ul>
                   <% elsif admin_signed_in? %>
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <%= link_to '本日予定', admin_root_path, class: "fas fa-clipboard-check nav-link btn btn-sm  btn-outline-light ml-5" %>
+                    </li>
                     <li class="nav-item">
                       <%= link_to '予約一覧', admin_reservations_path, class: "fas fa-user-clock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
@@ -51,14 +56,10 @@
                     <li class="nav-item">
                       <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "fas fa-lock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
-                    <div class="search-form">
-                      <%= form_tag(admin_search_path, method: :get) do %>
-                        <%= text_field_tag 'search[content]' %>
-                        <%= select_tag 'search[model]', options_for_select({ "患者情報" => "patient", "予約情報" => "reservation", "当日受付" => "reception", "受診履歴" => "examination" }) %>
-                        <%= submit_tag '検索', class: "btn btn-primary" %>
-                      <% end %>
-                    </div>
+                  </ul>
                   <% else %>
+                  <ul class="navbar-nav ml-auto">
+                    <a class="navbar-brand p-3" href="/">病院ロゴ</a>
                     <li class="nav-item">
                       <%= link_to '施設紹介', about_path, class:"fas fa-clinic-medical nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
@@ -74,8 +75,8 @@
                     <li class="nav-item">
                       <%= link_to 'ログイン', patient_session_path, method: :post, class: "fas fa-lock-open nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
+                  </ul>
                   <% end %>
-                </ul>
               </div>
         </div>
       </nav>
@@ -87,10 +88,19 @@
     <%= msg %>
     </div>
     <% end %>
+    <% if admin_signed_in? %>
+      <div class="admin_search-form">
+        <%= form_tag(admin_search_path, method: :get) do %>
+          <%= text_field_tag 'search[content]' %>
+          <%= select_tag 'search[model]', options_for_select({ "患者情報" => "patient", "予約情報" => "reservation", "当日受付" => "reception", "受診履歴" => "examination" }) %>
+          <%= submit_tag '検索', class: "btn btn-sm btn-primary" %>
+        <% end %>
+      </div>
+    <% end %>
     <%= yield %>
     </main>
     <footer>
-      <nav class="navbar navbar-expand-lg navbar-info" style="background-color: #F0E68C;">
+      <nav class="navbar navbar-expand-lg navbar-info" style="background-color: #FFFACD;">
         <div class="container justify-content-center">
           <div class="row">
             <div class>

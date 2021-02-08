@@ -70,6 +70,7 @@
               <%= f.submit "変更", class:"btn btn-sm btn-success"%>
             <% end %>
           </td>
+          <td><%= button_to '取り消し', admin_reservation_path(data.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
         </tr>
         <% end %>
       </table>
@@ -108,6 +109,7 @@
               <%= f.submit "変更", class:"btn btn-sm btn-success"%>
             <% end %>
           </td>
+          <td><%= button_to '取り消し', admin_reception_path(data.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
         </tr>
         <% end %>
       </table>
@@ -126,7 +128,6 @@
             <th>生年月日</th>
             <th>性別</th>
             <th>作業ステータス</th>
-            <th></th>
           </tr>
         </thead>
         <% @datas.each do |data| %>

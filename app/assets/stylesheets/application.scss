@@ -17,3 +17,16 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
  @import "fullcalendar.min";
+
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+}
+
+.admin_search-form {
+  text-align: right;
+}
