@@ -1,30 +1,21 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 offset-md-1">
-      <h5 class="mt-5 fas fa-user-circle">マイページ</h5><br/>
-      <table class="table-sm">
-        <tr>
-          <td><strong class="fas fa-user-cog">登録情報</strong></td>
-          <td><%= link_to '編集する', edit_patient_path, class:"btn btn-sm btn-outline-primary" %></td>
-       </tr>
-      </table>
-      <table class="table-sm table-bordered">
-        <tr><td class="table-active">氏名</td>　<td><%= @patient.last_name %>　<%= @patient.first_name %></td></tr>
-        <tr><td class="table-active">カナ</td><td><%= @patient.last_name_kana %>　<%= @patient.first_name_kana %></td></tr>
-        <tr><td class="table-active">性別</td><td><%= @patient.sex %></td></tr>
-        <tr><td class="table-active">生年月日</td><td><%= @patient.birth_date %></td></tr>
-        <tr><td class="table-active">郵便番号</td><td><%= @patient.postal_code %></td></tr>
-        <tr><td class="table-active">住所</td><td><%= @patient.address %></td></tr>
-        <tr><td class="table-active">電話番号</td><td><%= @patient.tel %></td></tr>
-        <tr><td class="table-active">メールアドレス</td><td><%= @patient.email %></td></tr>
-      </table>
+    <div class="col-3 offset-1">
+        <h5 class="mt-5 mb-3 fas fa-user-circle">マイページ</h5>
+        <table class="table-sm table-bordered">
+          <tr><td class="table-active">氏名</td>　<td><%= @patient.last_name %>　<%= @patient.first_name %></td></tr>
+          <tr><td class="table-active">カナ</td><td><%= @patient.last_name_kana %>　<%= @patient.first_name_kana %></td></tr>
+          <tr><td class="table-active">性別</td><td><%= @patient.sex %></td></tr>
+          <tr><td class="table-active">生年月日</td><td><%= @patient.birth_date %></td></tr>
+          <tr><td class="table-active">郵便番号</td><td><%= @patient.postal_code %></td></tr>
+          <tr><td class="table-active">住所</td><td><%= @patient.address %></td></tr>
+          <tr><td class="table-active">電話番号</td><td><%= @patient.tel %></td></tr>
+          <tr><td class="table-active">メールアドレス</td><td><%= @patient.email %></td></tr>
+        </table><br/>
+        <div class="edit_patient"><%= link_to '編集する', edit_patient_path, class: "btn btn-sm btn-outline-primary" %></div>
     </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-1">
-      <td><strong  class="fas fa-running">当日受付状況</strong></td>
+    <div class="col-7">
+      <h5 class="mt-5 mb-3 fas fa-running">当日受付状況</h5>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -33,7 +24,6 @@
               <th>発行時待ち人数</th>
               <th>発行時待ち時間</th>
               <th>受診ステータス</th>
-              <th></th>
             </tr>
           </thead>
           <% @receptions.each do |reception| %>
@@ -46,13 +36,7 @@
             </tr>
           <% end %>
         </table>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-1">
-      <td><strong  class="fas fa-medkit">予約状況</strong></td>
+      <h5 class="mt-4 mb-3 fas fa-medkit">予約状況</h5>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -61,7 +45,6 @@
               <th>症状</th>
               <th>受診目的</th>
               <th>受診ステータス</th>
-              <th></th>
             </tr>
           </thead>
           <% @reservations.each do |reservation| %>
@@ -74,13 +57,7 @@
             </tr>
           <% end %>
         </table>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-1">
-      <td><strong  class="fas fa-laptop-medical">受診履歴</strong></td>
+      <h5 class="mt-4 mb-3 fas fa-laptop-medical">受診履歴</h5>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -89,8 +66,7 @@
               <th>診断</th>
               <th>処置</th>
               <th>処方箋</th>
-              <th>入力ステータスス</th>
-              <th></th>
+              <th>入力ステータス</th>
             </tr>
           </thead>
           <% @examinations.each do |examination| %>

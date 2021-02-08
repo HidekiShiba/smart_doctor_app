@@ -1,7 +1,7 @@
 class Admin::PatientsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @patients = Patient.page(params[:page])
+    @patients = Patient.page(params[:page]).per(15)
   end
 
   def show

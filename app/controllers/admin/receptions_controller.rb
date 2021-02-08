@@ -1,7 +1,7 @@
 class Admin::ReceptionsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @receptions = Reception.all.page(params[:page])
+    @receptions = Reception.all.page(params[:page]).per(15)
   end
 
   def show

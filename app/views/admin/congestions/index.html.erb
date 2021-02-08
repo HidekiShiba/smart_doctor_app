@@ -1,6 +1,6 @@
-<div class="container mt-5">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-4">
       <h5 class="mb-2 fas fa-running">患者表示</h5><h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
       <table class="table-sm table-bordered table-striped">
         <thead class="thead-light">
@@ -18,19 +18,12 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-</div>
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <h5 class="mb-2 fas fa-stopwatch">管理者更新</h5><h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
+      <h5 class="mt-5 mb-2 fas fa-stopwatch">管理者更新</h5><h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
       <table class="table-sm table-bordered table-striped">
         <thead class="thead-light">
           <tr>
             <th>待ち人数（人）</th>
             <th>待ち時間（分）</th>
-            <th>受診予定日時</th>
             <th></th>
           </tr>
         </thead>
@@ -39,19 +32,13 @@
           <tr>
             <td><%= f.number_field :count, min: 0 %></td>
             <td><%= f.number_field :time, value: @congestion.count * 20, readonly: true %></td>
-            <td><%= (DateTime.now + Rational(9, 24) + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
             <td><%= f.submit "更新", class: "btn btn-sm btn-success" %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-  </div>
-</div>
-
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-8">
       <h5 class="mb-2 fas fa-running">当日受付一覧</h5>
       <table class="table table-striped">
         <thead>
@@ -78,17 +65,12 @@
               <%= f.submit "変更", class:"btn btn-sm btn-success"%>
             <% end %>
           </td>
+          <td><%= button_to '取り消し', admin_reception_path(reception.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
         </tr>
         <% end %>
       </table>
       <%= paginate @receptions %>
-    </div>
-  </div>
-</div>
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <h5 class="mb-2 fas fa-user-clock">本日予約一覧</h5>
+      <h5 class="mt-4 mb-2 fas fa-user-clock">本日予約一覧</h5>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -111,9 +93,10 @@
           <td>
             <%= form_with model: reservation, url: admin_reservation_path(reservation.id), local: true do |f| %>
               <%= f.select :examination_status, Reservation.examination_statuses.keys %>
-              <%= f.submit "変更", class:"btn btn-sm btn-success"%>
+              <%= f.submit "変更", class: "btn btn-sm btn-success"%>
             <% end %>
           </td>
+          <td><%= button_to '取り消し', admin_reservation_path(reservation.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
         </tr>
         <% end %>
       </table>
