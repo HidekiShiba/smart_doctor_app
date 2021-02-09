@@ -15,14 +15,17 @@ class Admin::ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update(reservation_params)
-    if @reservation.examination_status == "受診済"
+    @examinations = Examination.where(reservation_id: @reservation.id)
+    if @examinations.count() > 0
+       redirect_to request.referer, danger: '該当の受診履歴はすでに作成済です'
+    elsif @reservation.examination_status == "受診済"
        @examination = Examination.new
        @examination.reservation_id = @reservation.id
        @examination.save
+       redirect_to request.referer, warning: '受診情報を更新し、新規受診履歴を作成しました'
     end
-    redirect_to request.referer, warning: '受診情報を更新し、新規受診履歴を作成しました'
   end
-  
+
   def destroy
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
