@@ -22,7 +22,7 @@
           <td><%= examination.reservation.patient.last_name + examination.reservation.patient.first_name %></td>
           <td><%= examination.reservation.patient.birth_date.strftime("%Y/%m/%d") %></td>
           <td><%= examination.reservation.patient.sex %></td>
-          <% else %>
+          <% elsif examination.reservation_id.nil? %>
           <td><%= link_to examination.reception.start_time.strftime("%Y/%m/%d %H:%M"), admin_examination_path(examination.id) %></td>
           <td><%= examination.reception.patient.id %></td>
           <td><%= examination.reception.patient.last_name + examination.reception.patient.first_name %></td>
