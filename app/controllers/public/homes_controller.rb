@@ -5,5 +5,6 @@ class Public::HomesController < ApplicationController
   
   def about
     @congestion = Congestion.find(1)
+    @reservation = Reservation.new
   end
 end
