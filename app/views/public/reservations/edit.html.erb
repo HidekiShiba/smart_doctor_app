@@ -18,7 +18,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-4 offset-md-4">
       <h5 class="mt-4 mb-3 fas fa-user-clock">予約内容編集</h5>
       <%= form_with model: @reservation, url: reservation_path(@reservation.id), local: true do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>

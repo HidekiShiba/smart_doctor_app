@@ -4,5 +4,6 @@ class Public::HomesController < ApplicationController
   end
   
   def about
+    @congestion = Congestion.find(1)
   end
 end

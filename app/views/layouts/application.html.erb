@@ -10,26 +10,26 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color: #FFFACD;">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFFACD;">
         <div class="container">
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                   <% if patient_signed_in? %>
+                  <a class="navbar-brand" href="/"><%= image_tag 'logo.png', size: '60x60' %></a>
                   <ul class="navbar-nav ml-auto">
-                    <a class="navbar-brand p-3" href="/">病院ロゴ</a>
-                    <p id="patient-name" class=".text-secondary mt-2">ようこそ、<%= current_patient.last_name %>さん！</p>
-                    <li class="nav-item">
+                    <p id="patient-name" class=".text-secondary mt-3">ようこそ、<%= current_patient.last_name %>さん！</p>
+                    <li class="nav-item mt-2">
                       <%= link_to 'お知らせ', informations_path, class: "fas fa-microphone nav-link btn btn-sm btn-outline-light ml-3" %>
                     </li>
-                    <li class="nav-item">
-                      <%= link_to 'マイページ', patient_path(current_patient.id), class: "fas fa-user nav-link btn btn-sm btn-outline-light ml-3"  %>
-                    </li>
-                    <li class="nav-item">
+                    <li class="nav-item mt-2">
                       <%= link_to '空き状況', congestions_path, class: "fas fa-clock nav-link btn btn-sm  btn-outline-light ml-3" %>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mt-2">
+                      <%= link_to 'マイページ', patient_path(current_patient.id), class: "fas fa-user nav-link btn btn-sm btn-outline-light ml-3"  %>
+                    </li>
+                    <li class="nav-item mt-2">
                       <%= link_to 'ログアウト', destroy_patient_session_path, method: :delete, class: "fas fa-lock nav-link btn btn-sm  btn-outline-light ml-3" %>
                     </li>
                   </ul>
@@ -58,21 +58,21 @@
                     </li>
                   </ul>
                   <% else %>
+                  <a class="navbar-brand" href="/"><%= image_tag 'logo.png', size: '60x60' %></a>
                   <ul class="navbar-nav ml-auto">
-                    <a class="navbar-brand p-3" href="/">病院ロゴ</a>
-                    <li class="nav-item">
-                      <%= link_to '施設紹介', about_path, class:"fas fa-clinic-medical nav-link btn btn-sm  btn-outline-light ml-5" %>
+                    <li class="nav-item mt-2">
+                      <%= link_to '受診方法', about_path, class:"fas fa-clinic-medical nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mt-2">
                       <%= link_to 'お知らせ', informations_path, class: "fas fa-microphone nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mt-2">
                       <%= link_to '空き状況', congestions_path, class: "fas fa-clock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mt-2">
                       <%= link_to '新規登録', new_patient_registration_path, class: "fas fa-lock nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mt-2">
                       <%= link_to 'ログイン', patient_session_path, method: :post, class: "fas fa-lock-open nav-link btn btn-sm  btn-outline-light ml-5" %>
                     </li>
                   </ul>

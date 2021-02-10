@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-7 offset-3">
+      <h5 class="d-flex">Webの簡単予約でライフスタイルに合った診察を受けましょう！</h5>
+    </div>
+  </div>
+</div>
+<div class="main-container container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-5 ml-4">
+      <h5 class="fas fa-running mb-4"> 当日受診の場合</h5><br/>
+      <a><%= image_tag 'orientation1.png', size: '500x500' %></a>
+      <h5 class="mt-4"> <strong>現在の待ち状況</strong></h5></br>
+      <h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th>待ち人数（人）</th>
+              <th>待ち時間（分）</th>
+              <th>受診予定日時</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @congestion.count %></td>
+              <td><%= @congestion.time %></td>
+              <td><%= (DateTime.now + Rational(9, 24) + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
+            </tr>
+          </tbody>
+        </table>
+        <h6 class="mt-5">当日受付をご希望の方</h6>
+        <h5 class="mt-3"><%= link_to ' 整理券発行ページへ', new_reception_path, class: "fas fa-running" %></h5>
+        <div class="container ml-5 mt-5">
+          <div class="row">
+            <div class="col-md-12">
+             <table>
+              <td><h5><%= link_to '新規登録', new_patient_registration_path, class: "fas fa-lock btn-lg btn-success ml-5" %></h5></td>
+              <td><h5><%= link_to 'ログイン', patient_session_path, method: :post, class: "fas fa-lock-open btn-lg btn-primary ml-5" %></h5></td>
+             </table>
+            </div>
+          </div>
+        </div>
+    </div>
+      <div class="row">
+        <div class="col-md-9 ml-1">
+          <h5 class="fas fa-user-clock mb-4">予約の場合</h5><br/>
+          <a><%= image_tag 'orientation2.png', size: '500x500' %></a>
+          <div class="mt-3 mb-5" id="calendar"></div>
+        </div>
+      </div>
+  </div>
+</div>

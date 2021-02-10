@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-sm-6 offset-sm-3">
       <h5 class="mt-4 mb-3 fas fa-user-edit">登録情報編集</h5>
       <%= form_with model:@patient, url: patient_path, local: true do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
@@ -14,7 +14,8 @@
           <tr><td>電話番号</td><td><%= f.text_field :tel, autofocus: true %></td></tr>
           <tr><td>メールアドレス　</td><td><%= f.text_field :email, autofocus: true %></td></tr>
           <tr>
-            <td></td><td><%= f.submit '編集内容を保存', class: "btn btn-outline-success" %></td><td></td>
+            <td></td>
+            <td><%= f.submit '編集内容を保存', class: "btn btn-outline-success" %></td>
             <td><button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#unsubscribe">退会する</button></td>
           </tr>
         </table>
@@ -22,8 +23,6 @@
     </div>
   </div>
 </div>
-
-<!-- Modal -->
 <div class="modal fade" id="unsubscribe" tabindex="-1" role="dialog" aria-labelledby="unsubscribeLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

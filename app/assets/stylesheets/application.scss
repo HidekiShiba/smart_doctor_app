@@ -18,6 +18,16 @@
  @import 'font-awesome';
  @import "fullcalendar.min";
 
+* {
+	float: none;
+	position: static;
+}
+ 
+img {
+	max-width: 100%;
+	height: auto;
+}
+
 body {
   display: flex;
   flex-flow: column;
