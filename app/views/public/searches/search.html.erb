@@ -1,0 +1,32 @@
+<div class="container px-5 mt-4 px-sm-0">
+  <div class="row">
+    <% if @model == "information" %>
+      <h2>"<%= @content %>"の検索結果：<%= @datas.count %>件</h2>
+      <% if @datas.count == 0 %>
+        <div class="w-100">条件にあてはまる検索結果はありません</div>
+      <% else %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>投稿日時</th>
+            <th>テーマ</th>
+            <th>投稿画像</th>
+            <th>件名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @datas.each do |data| %>
+            <tr>
+              <td><%= data.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= data.theme.name %></td>
+              <td><%= link_to attachment_image_tag(data, :image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60"), information_path(data.id) %></td>
+              <td><%= link_to data.subject, information_path(data.id) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

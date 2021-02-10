@@ -11,12 +11,14 @@
 // about supported directives.
 //
 //= require jquery3
-//= require popper
-//= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
-//= require moment
-//= require fullcalendar
-//= require fullcalendar/lang/ja
+//= require jquery.min
+//= require popper
+//= require bootstrap-sprockets
+//= require jquery-ui.min
+//= require moment.min
+//= require fullcalendar.min
+//= require ja
+//= require jquery.jpostal
 //= require_tree .

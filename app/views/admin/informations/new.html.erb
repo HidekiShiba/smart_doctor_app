@@ -3,6 +3,7 @@
     <div class="col-md-10 offset-md-1">
       <h5 class="ml-5 mb-3">お知らせ新規投稿</h5>
       <%= form_with model:@new_information, url: admin_informations_path, local:true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
         <table class="table-sm">
           <tr>
             <td><h6>テーマ</h6></td>

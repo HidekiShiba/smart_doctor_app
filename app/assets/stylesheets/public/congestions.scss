@@ -1,3 +1,33 @@
 // Place all the styles related to the public::congestions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  margin: 40px 10px;
+  padding: 0;
+  font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+  font-size: 14px;
+}
+
+#calendar {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.fc {
+  text-align: center !important;
+}
+
+.fc-sat { color: blue; }
+.fc-sun { color: red; }
+
+@media screen and (max-width: 480px) {
+  #calendar {
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    display: table-row;
+    border-right: 1px solid #ddd;
+    display: table-cell;
+    border-bottom: none;
+    width: auto;
+  }
+}

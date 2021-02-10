@@ -12,10 +12,31 @@
  *
  *= require_tree .
  *= require_self
- *= require fullcalendar
  */
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+ @import "fullcalendar.min";
 
+* {
+	float: none;
+	position: static;
+}
  
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+}
+
+.admin_search-form {
+  text-align: right;
+}

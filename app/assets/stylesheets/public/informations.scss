@@ -1,3 +1,24 @@
 // Place all the styles related to the public::informations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.modal-body img {
+zoom: 3;
+display: block;
+margin:auto;
+}
+
+.search-form {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.search-form-show {
+  text-align: right;
+}
+
+@media screen and (max-width: 480px) {
+  .table {
+    width: 100%;
+    display: block;
+  }
+}

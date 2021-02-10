@@ -1,8 +1,9 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <h5 class="ml-5 mb-3">当日受付確認フォーム</h5>
-      <%= form_with model: @new_reception, remote: true do |f| %>
+    <div class="col-md-6 offset-md-3">
+      <h5 class="mb-3 fas fa-running">当日受付確認</h5>
+      <%= form_with model: @new_reception, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
         <table class="table-sm">
           <tr>
             <td><h6>患者氏名</h6></td>
@@ -20,10 +21,34 @@
           <%= f.hidden_field :congestion_id %>
           <%= f.hidden_field :examination_status, value: '発行済' %>
           <tr>
-            <td></td><td><%= f.submit '当日受付確定', class:"btn btn-outline-primary" %></td>
+            <td></td><td><button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#new_reception">最終確認へ</button></td>
           </tr>
         </table>
-      <% end %>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="new_reception" tabindex="-1" role="dialog" aria-labelledby="new_receptionLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="new_receptionLabel">最終確認</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5><注意事項></h5>
+        <p>・順番がすぎた場合、当整理券は無効となりますのでご注意ください</p>
+        <p>・受診時間が後ろ倒しになる可能性がありますことをご了承ください</p>
+        <p>・ご来院時に内容の確認できるものをご提示ください</p>
+        <p>・初診の方は受診10分前にはご来院ください</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">当日受付中止</button>
+        <%= f.submit '当日受付確定', class: "btn btn-success" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

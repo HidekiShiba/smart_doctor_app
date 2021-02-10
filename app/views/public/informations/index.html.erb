@@ -1,34 +1,53 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-7 offset-1">
-      <h5 class="ml-5 mb-3">お知らせ一覧</h5>
+    <div class="offset-1">
+      <h5 class="mb-3 fas fa-microphone">お知らせ一覧</h5>
     </div>
-  </div>
-</div>
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-10 offset-1">
+    <div class="col-md-10 offset-1">
+      <div class="search-form">
+        <%= form_tag(search_path, method: :get) do %>
+          <%= text_field_tag 'search[content]' %>
+          <%= select_tag 'search[model]', options_for_select({ "お知らせ" => "information" }) %>
+          <%= submit_tag '検索', class: "btn btn-sm btn-primary" %>
+        <% end %>
+      </div>
       <table class="table table-striped">
           <tr>
-          <td>お知らせID</td>
+          <td>投稿日時</td>
           <td>テーマ</td>
-          <td>投稿画像</td>
+          <td>画像</td>
           <td>件名</td>
           <td></td>
           </tr>
           <% @informations.each do |information| %>
               <tr>
-                <td><%= information.id %></td>
+                <td><%= information.created_at.strftime("%Y/%m/%d %H:%M") %></td>
                 <td><%= information.theme.name %></td>
-                <td><%= attachment_image_tag information, :image, fallback: "no_image.jpg", size: "240x200" %></td>
-                <td>
-                  <%= link_to information_path(information.id) do %>
-                   <%= information.subject %>
-                  <% end %>
+                <td data-toggle="modal" data-target="#image_modal-<%= information.id %>">
+                  <%= attachment_image_tag information, :image, fallback: "no_image.jpg", size: "60x50" %>
                 </td>
-                <td id="favorite-btn-<%= information.id %>">
-                  <%= render "public/favorites/favorite-btn", information: information %>
-                </td>
+                  <div class="modal fade" id="image_modal-<%= information.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body">
+                          <%= attachment_image_tag information, :image, fallback: "no_image.jpg", size: "240x200" %>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <td><%= link_to information.subject, information_path(information.id)  %></td>
+                <% if patient_signed_in? %>
+                <td id="favorite-btn-<%= information.id %>"><%= render "public/favorites/favorite-btn", information: information %></td>
+                <% else %>
+                <td class="far fa-thumbs-up" style="color: #0000FF;"><%= information.favorites.count %></td>
+                <% end %>
               </tr>
           <% end %>
       </table>
@@ -36,3 +55,4 @@
     </div>
   </div>
 </div>
+

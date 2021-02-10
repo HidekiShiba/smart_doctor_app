@@ -1,0 +1,71 @@
+<div class="container justify-content-center">
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <h5 class="mt-4 mb-3 fas fa-user-clock">予約内容確認・修正</h5>
+      <%= form_with model: @reservation, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+        <table class="table-sm">
+          <tr><td class="table-active">受診開始時間　<span class="badge badge-danger">入力不可</span></td><td data-toggle="modal" data-target="#edit_reservation"><%= f.text_field :start_time, class: "form-control input-start"%></td></tr>
+          <tr><td class="table-active">受診終了時間　<span class="badge badge-danger">入力不可</span></td><td data-toggle="modal" data-target="#edit_reservation"><%= f.text_field :end_time, class: "form-control input-end"%></td></tr>
+          <tr><td class="table-active">受診回数　<span class="badge badge-danger">必須</span></td><td><%= f.select :examination_count, Reservation.examination_counts.keys, include_blank: "選択して下さい", class: "form-control"%></td></tr>
+          <tr><td class="table-active">症状　<span class="badge badge-danger">必須</span></td><td><%= f.text_area :symptom, class: "form-control"%></td></tr>
+          <tr><td class="table-active">身体部位　<span class="badge badge-danger">必須</span></td><td><%= f.text_field :body_parts, class: "form-control"%></td></tr>
+          <tr><td class="table-active">症状日　<span class="badge badge-danger">必須</span></td><td><%= f.date_field :starting_point, class: "form-control"%></td></tr>
+          <tr><td class="table-active">治療の有無　<span class="badge badge-danger">必須</span></td><td><%= f.select :treatment, Reservation.treatments.keys, include_blank: "選択して下さい", class: "form-control"%></td></tr>
+          <tr><td class="table-active">処方中の薬　<span class="badge badge-primary">任意</span></td><td><%= f.text_field :prescription, class: "form-control"%></td></tr>
+          <tr><td class="table-active">副作用の有無　<span class="badge badge-danger">必須</span></td><td><%= f.select :side_effect, Reservation.side_effects.keys, include_blank: "選択して下さい", class: "form-control"%></td></tr>
+          <tr><td class="table-active">他の疾患　<span class="badge badge-primary">任意</span></td><td><%= f.text_field :other_diseases, class: "form-control"%></td></tr>
+          <tr><td class="table-active">かかりつけ病院　<span class="badge badge-primary">任意</span></td><td><%= f.text_area :hospital_name, class: "form-control" %></td></tr>
+          <tr><td class="table-active">妊娠の有無　<span class="badge badge-danger">必須</span></td><td><%= f.select :pregnancy, Reservation.pregnancies.keys, include_blank: "選択して下さい", class: "form-control"%></td></tr>
+          <tr><td class="table-active">受診目的　<span class="badge badge-danger">必須</span></td><td><%= f.select :purpose, Reservation.purposes.keys, include_blank: "選択して下さい", class: "form-control"%></td></tr>
+          <tr><td class="table-active">医師への要望　<span class="badge badge-primary">任意</span></td><td><%= f.text_area :request, class: "form-control"%></td></tr>
+          <%= f.hidden_field :examination_status, {value: '受診前'} %>
+          <tr>
+            <td></td><td class ="btn btn-outline-success" data-toggle="modal" data-target="#reservation_complete">最終確認</td><td></td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="reservation_complete" tabindex="-1" role="dialog" aria-labelledby="reservation_completeLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="reservation_completeLabel">まだ予約は確定していません</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5><注意事項></h5>
+        <p>・順番がすぎた場合、予約は無効となりますのでご注意ください</p>
+        <p>・受診時間が後ろ倒しになる可能性がありますことをご了承ください</p>
+        <p>・ご来院時に内容の確認できるものをご提示ください</p>
+        <p>・初診の方は受診10分前にはご来院ください</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">予約修正</button>
+        <%= f.submit '予約確定', class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="edit_reservation" tabindex="-1" role="dialog" aria-labelledby="edit_reservationLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edit_reservationLabel">日時変更</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="calendar"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>

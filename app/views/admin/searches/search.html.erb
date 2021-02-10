@@ -1,0 +1,152 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <% if @model == "patient" %>
+      <h3>"<%= @content %>"の検索結果：<%= @datas.count %>件</h3>
+      <% if @datas.count == 0 %>
+        <div class="w-100">条件にあてはまる検索結果はありません</div>
+      <% else %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>患者ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @datas.each do |data| %>
+          <tr>
+            <td><%= data.id %></td>
+            <td>
+              <%= link_to admin_patient_path(data.id) do %>
+                <%= data.last_name + data.first_name %>
+              <% end %>
+            </td>
+            <td><%= data.email %></td>
+            <td>
+              <% if data.is_unsubscribe_flag == false %>
+                  有効会員
+              <% elsif data.is_unsubscribe_flag == true %>
+                  無効会員
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <% end %>
+      <% elsif @model == "reservation" %>
+      <h3>"<%= @content %>"の検索結果：<%= @datas.count %>件</h3>
+      <% if @datas.count == 0 %>
+        <div class="w-100">条件にあてはまる検索結果はありません</div>
+      <% else %>
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>受診開始日時</th>
+            <th>予約作成日時</th>
+            <th>患者ID</th>
+            <th>患者氏名</th>
+            <th>性別</th>
+            <th>受診ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @datas.each do |data| %>
+        <tr>
+          <td><%= link_to data.start_time.strftime("%Y/%m/%d %H:%M"), admin_reservation_path(data.id) %></td>
+          <td><%= data.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+          <td><%= data.patient.id %></td>
+          <td><%= data.patient.last_name + data.patient.first_name %></td>
+          <td><%= data.patient.sex %></td>
+          <td>
+            <%= form_with model: data, url: admin_reservation_path(data.id), local: true do |f| %>
+              <%= f.select :examination_status, Reservation.examination_statuses.keys %>
+              <%= f.submit "変更", class:"btn btn-sm btn-success"%>
+            <% end %>
+          </td>
+          <td><%= button_to '取り消し', admin_reservation_path(data.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+        <% end %>
+      </table>
+      <% end %>
+    <% elsif @model == "reception" %>
+      <h3>"<%= @content %>"の検索結果：<%= @datas.count %>件</h3>
+      <% if @datas.count == 0 %>
+        <div class="w-100">条件にあてはまる検索結果はありません</div>
+      <% else %>
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>受診開始日時</th>
+            <th>受付作成日時</th>
+            <th>患者ID</th>
+            <th>患者氏名</th>
+            <th>性別</th>
+            <th>受診ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @datas.each do |data| %>
+        <tr>
+          <td><%= link_to data.start_time.strftime("%Y/%m/%d %H:%M"), admin_reception_path(data.id) %></td>
+          <td><%= data.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+          <td><%= data.patient.id %></td>
+          <td><%= data.patient.last_name + data.patient.first_name %></td>
+          <td><%= data.patient.sex %></td>
+          <td>
+            <%= form_with model: data, url: admin_reception_path(data.id), local: true do |f| %>
+              <%= f.select :examination_status, Reception.examination_statuses.keys %>
+              <%= f.submit "変更", class:"btn btn-sm btn-success"%>
+            <% end %>
+          </td>
+          <td><%= button_to '取り消し', admin_reception_path(data.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+        <% end %>
+      </table>
+      <% end %>
+    <% else %>
+      <h3>"<%= @content %>"の検索結果：<%= @datas.count %>件</h3>
+      <% if @datas.count == 0 %>
+        <div class="w-100">条件にあてはまる検索結果はありません</div>
+      <% else %>
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>受診日時</th>
+            <th>患者ID</th>
+            <th>患者氏名</th>
+            <th>生年月日</th>
+            <th>性別</th>
+            <th>作業ステータス</th>
+          </tr>
+        </thead>
+        <% @datas.each do |data| %>
+        <tr>
+          <% if data.reception_id.nil? %>
+          <td><%= link_to data.reservation.start_time.strftime("%Y/%m/%d %H:%M"), admin_examination_path(data.id) %></td>
+          <td><%= data.reservation.patient.id %></td>
+          <td><%= data.reservation.patient.last_name + data.reservation.patient.first_name %></td>
+          <td><%= data.reservation.patient.birth_date.strftime("%Y/%m/%d") %></td>
+          <td><%= data.reservation.patient.sex %></td>
+          <% elsif data.reservation_id.nil? %>
+          <td><%= link_to data.reception.start_time.strftime("%Y/%m/%d %H:%M"), admin_examination_path(data.id) %></td>
+          <td><%= data.reception.patient.id %></td>
+          <td><%= data.reception.patient.last_name + data.reception.patient.first_name %></td>
+          <td><%= data.reception.patient.birth_date.strftime("%Y/%m/%d") %></td>
+          <td><%= data.reception.patient.sex %></td>
+          <% end %>
+          <td>
+            <%= form_with model: data, url: admin_examination_path(data.id), local: true do |f| %>
+              <%= f.select :update_status, Examination.update_statuses.keys %>
+              <%= f.submit "変更", class:"btn btn-sm btn-success"%>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <% end %>
+    <% end %>
+  </div>
+</div>

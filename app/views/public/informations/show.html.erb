@@ -1,14 +1,23 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-10 offset-1">
-    <h5 class="ml-5 mt-5">お知らせ詳細</h5>
+    <div class="col-sm-2 offset-3">
+      <h5 class="mb-4 fas fa-microphone">お知らせ詳細</h5>
     </div>
-  </div>
-</div>
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12">
-      <table class="table-sm">
+      <div class="col-sm-4">
+        <div class="search-form-show">
+          <%= form_tag(search_path, method: :get) do %>
+            <%= text_field_tag 'search[content]' %>
+            <%= select_tag 'search[model]', options_for_select({ "お知らせ" => "information" }) %>
+            <%= submit_tag '検索', class: "btn btn-sm btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    <div class="col-sm-6 offset-3">
+      <table class="table table-striped">
+        <tr>
+          <td><h6>投稿日時</h6></td>
+          <td><%= @information.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        </tr>
         <tr>
           <td><h6>テーマ</h6></td>
           <td><%= @information.theme.name %></td>
@@ -18,15 +27,40 @@
           <td><%= @information.subject %></td>
         </tr>
         <tr>
-          <td><h6>お知らせ画像</h6></td>
-          <td><%= attachment_image_tag @information, :image, fallback: "no_image.jpg", size: "240x200" %></td>
+          <td><h6>画像</h6></td>
+          <td data-toggle="modal" data-target="#image_modal-<%= @information.id %>">
+            <%= attachment_image_tag @information, :image, fallback: "no_image.jpg", size: "240x200" %>
+          </td>
         </tr>
         <tr>
-          <td><h6>詳細</h6></td>
+          <td><h6>内容</h6></td>
           <td><%= @information.body %></td>
         </tr>
-          <p id="favorite-btn-<%= @information.id %>"><%= render "public/favorites/favorite-btn", information: @information %></p>
+        <tr>
+          <td></td>
+          <% if patient_signed_in? %>
+          <td id="favorite-btn-<%= @information.id %>"><%= render "public/favorites/favorite-btn", information: @information %></td>
+          <% else %>
+          <td class="far fa-thumbs-up" style="color: #0000FF;"><%= @information.favorites.count %></td>
+          <% end %>
+        </tr>
       </table>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="image_modal-<%= @information.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        <%= attachment_image_tag @information, :image, fallback: "no_image.jpg", size: "240x200" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+      </div>
     </div>
   </div>
 </div>

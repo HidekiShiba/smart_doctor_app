@@ -1,23 +1,90 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 offset-md-1">
-      <h5 class="ml-5 mt-5">マイページ</h5><br />
-      <table class="table-sm">
-        <tr>
-          <td><strong>登録情報　</strong></td>
-          <td><%= link_to '編集する', edit_patient_path, class:"btn btn-sm btn-outline-primary" %></td>
-       </tr>
-      </table>
-      <table class="table-sm table-bordered">
-        <tr><td class="table-active">氏名</td>　<td><%= @patient.last_name %>　<%= @patient.first_name %></td></tr>
-        <tr><td class="table-active">カナ</td><td><%= @patient.last_name_kana %>　<%= @patient.first_name_kana %></td></tr>
-        <tr><td class="table-active">性別</td><td><%= @patient.sex %></td></tr>
-        <tr><td class="table-active">生年月日</td><td><%= @patient.birth_date %></td></tr>
-        <tr><td class="table-active">郵便番号</td><td><%= @patient.postal_code %></td></tr>
-        <tr><td class="table-active">住所</td><td><%= @patient.address %></td></tr>
-        <tr><td class="table-active">電話番号</td><td><%= @patient.tel %></td></tr>
-        <tr><td class="table-active">メールアドレス</td><td><%= @patient.email %></td></tr>
-      </table>
+    <div class="col-3 offset-1">
+        <h5 class="mt-5 mb-3 fas fa-user-circle">マイページ</h5>
+        <table class="table-sm table-bordered">
+          <tr><td class="table-active">氏名</td>　<td><%= @patient.last_name %>　<%= @patient.first_name %></td></tr>
+          <tr><td class="table-active">カナ</td><td><%= @patient.last_name_kana %>　<%= @patient.first_name_kana %></td></tr>
+          <tr><td class="table-active">性別</td><td><%= @patient.sex %></td></tr>
+          <tr><td class="table-active">生年月日</td><td><%= @patient.birth_date %></td></tr>
+          <tr><td class="table-active">郵便番号</td><td><%= @patient.postal_code %></td></tr>
+          <tr><td class="table-active">住所</td><td><%= @patient.address %></td></tr>
+          <tr><td class="table-active">電話番号</td><td><%= @patient.tel %></td></tr>
+          <tr><td class="table-active">メールアドレス</td><td><%= @patient.email %></td></tr>
+        </table><br/>
+        <div class="edit_patient"><%= link_to '編集する', edit_patient_path, class: "btn btn-sm btn-outline-primary" %></div>
+    </div>
+    <div class="col-7">
+      <h5 class="mt-5 mb-3 fas fa-running">当日受付状況</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>受診開始日時</th>
+              <th>整理券発行日時</th>
+              <th>発行時待ち人数</th>
+              <th>発行時待ち時間</th>
+              <th>受診ステータス</th>
+            </tr>
+          </thead>
+          <% @receptions.each do |reception| %>
+            <tr>
+              <td><%= reception.start_time.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= reception.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= reception.number %>人</td>
+              <td><%= reception.congestion.time %>分</td>
+              <td><%= reception.examination_status %></td>
+            </tr>
+          <% end %>
+        </table>
+      <h5 class="mt-4 mb-3 fas fa-medkit">予約状況</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>受診開始日時</th>
+              <th>予約完了日時</th>
+              <th>症状</th>
+              <th>受診目的</th>
+              <th>受診ステータス</th>
+            </tr>
+          </thead>
+          <% @reservations.each do |reservation| %>
+            <tr>
+              <td><%= link_to reservation.start_time.strftime("%Y/%m/%d %H:%M"), reservation_path(reservation.id) %></td>
+              <td><%= reservation.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= reservation.symptom %></td>
+              <td><%= reservation.purpose %></td>
+              <td><%= reservation.examination_status %></td>
+            </tr>
+          <% end %>
+        </table>
+      <h5 class="mt-4 mb-3 fas fa-laptop-medical">受診履歴</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>受診開始日時</th>
+              <th>履歴作成日時</th>
+              <th>診断</th>
+              <th>処置</th>
+              <th>処方箋</th>
+              <th>入力ステータス</th>
+            </tr>
+          </thead>
+          <% @examinations.each do |examination| %>
+            <tr>
+              <% if examination.reception_id.nil? %>
+              <td><%= link_to examination.reservation.start_time.strftime("%Y/%m/%d %H:%M"), examination_path(examination.id) %></td>
+              <% else %>
+              <td><%= link_to examination.reception.start_time.strftime("%Y/%m/%d %H:%M"), examination_path(examination.id) %></td>
+              <% end %>
+              <td><%= examination.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= examination.diagnosis %></td>
+              <td><%= examination.treatment %></td>
+              <td><%= examination.prescription_status %></td>
+              <td><%= examination.update_status %></td>
+            </tr>
+          <% end %>
+        </table>
     </div>
   </div>
 </div>
+<%= paginate @examinations %>

@@ -1,17 +1,132 @@
-<h3>ただいまの待ち状況</h3>
-<table class="table-sm table-bordered table-striped mt-3 padding-10">
-  <thead class="thead-light">
-    <tr>
-      <th>待ち人数</th>
-      <th>待ち時間</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @congestion.count %>人</td>
-      <td><%= @congestion.time %>分</td>
-    </tr>
-  </tbody>
-</table>
-<h6 class="mt-5">当日受付をご希望の方</h6>
-<p class="ml-5"><%= link_to '整理券発行ページへ', new_reception_path %></p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h5 class="ml-5 fas fa-user-clock">空き状況</h5>
+      <div id="calendar"></div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="new_reservation" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">新規予約</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group field">
+          <%= form_with model: @reservation, url: confirm_reservations_path(@reservation), local: true do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+            <div class="form-inputs">
+
+              <div class="form-group">
+                <%= f.label :start_time, "受診開始時間", class: "form-control-label"%>
+                <span class="badge badge-danger">入力不可</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.text_field :start_time, class: "form-control input-start"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :end_time, "受診終了時間", class: "form-control-label"%>
+                <span class="badge badge-danger">入力不可</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.text_field :end_time, class: "form-control input-end"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :examination_count, "受診回数", class: "form-control-label"%>
+                <span class="badge badge-danger">必須</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.select :examination_count, Reservation.examination_counts.keys, include_blank: "選択して下さい", class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :symptom, "症状", class: "form-control-label"%>
+                <span class="badge badge-danger">必須</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.text_area :symptom, class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :body_parts, "身体部位", class: "form-control-label"%>
+                <span class="badge badge-danger">必須</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.text_field :body_parts, class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :starting_point, "症状日", class: "form-control-label"%>
+                <span class="badge badge-danger">必須</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.date_field :starting_point, class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :treatment, "治療の有無", class: "form-control-label"%>
+                <span class="badge badge-danger">必須</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.select :treatment, Reservation.treatments.keys, include_blank: "選択して下さい", class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :prescription, "処方中の薬", class: "form-control-label"%>
+                <span class="badge badge-primary">任意</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.text_field :prescription, class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :side_effect, "副作用の有無", class: "form-control-label"%>
+                <span class="badge badge-danger">必須</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.select :side_effect, Reservation.side_effects.keys, include_blank: "選択して下さい", class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :other_diseases, "他の病気", class: "form-control-label"%>
+                <span class="badge badge-primary">任意</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.text_field :other_diseases, class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :hospital_name, "病院名", class: "form-control-label"%>
+                <span class="badge badge-primary">任意</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.text_area :hospital_name, class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :pregnancy, "妊娠の有無", class: "form-control-label"%>
+                <span class="badge badge-danger">必須</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.select :pregnancy, Reservation.pregnancies.keys, include_blank: "選択して下さい", class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :purpose, "受診目的", class: "form-control-label"%>
+                <span class="badge badge-danger">必須</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.select :purpose, Reservation.purposes.keys, include_blank: "選択して下さい", class: "form-control"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :request, "医師への要望", class: "form-control-label"%>
+                <span class="badge badge-primary">任意</span>
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.text_area :request, class: "form-control"%>
+                </div>
+              </div>
+              <%= f.hidden_field :examination_status, {value: '受診前'} %>
+            </div>
+            <div class="modal-footer actions">
+              <%= f.submit "予約確認へ", class: "btn btn-primary" %>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

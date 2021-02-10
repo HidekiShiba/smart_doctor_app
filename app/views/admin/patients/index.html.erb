@@ -1,24 +1,27 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h4 class="ml-5 mt-5">会員情報一覧</h4>
+      <h5 class="mt-5 fas fa-user-lock">会員情報一覧</h5>
       <table class="table table-striped mt-5">
         <tr>
           <td>患者ID</td>
           <td>患者氏名</td>
+          <td>生年月日</td>
+          <td>性別</td>
+          <td>電話番号</td>
           <td>メールアドレス</td>
           <td>ステータス</td>
         </tr>
         <% @patients.each do |patient| %>
         <tr>
           <td><%= patient.id %></td>
-          <td>
-            <%= link_to admin_patient_path(patient.id) do %>
-              <%= patient.last_name + patient.first_name %>
-            <% end %>
-          </td>
+          <td><%= link_to (patient.last_name + patient.first_name), admin_patient_path(patient.id)  %></td>
+          <td><%= patient.birth_date %></td>
+          <td><%= patient.sex %></td>
+          <td><%= patient.tel %></td>
           <td><%= patient.email %></td>
-          <td><% if patient.is_unsubscribe_flag == false %>
+          <td>
+            <% if patient.is_unsubscribe_flag == false %>
                   有効会員
               <% elsif patient.is_unsubscribe_flag == true %>
                   無効会員

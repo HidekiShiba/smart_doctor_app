@@ -1,3 +1,43 @@
 // Place all the styles related to the public::homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// .main-container {
+  // background-image: image-url("home.jpg");
+  // background-size: cover;
+// }
+.biz-hour {
+  border-collapse: collapse;
+}
+
+.biz-hour th {
+  border-top: 1px solid #A28C63;
+}
+
+.biz-hour th, .biz-hour td {
+  padding: 10px 20px;
+  text-align: center;
+  border-bottom: 1px solid #A28C63;
+}
+
+.biz-hour th {
+  font-weight: normal;
+}
+
+.biz-hour th.sat {
+  color: #3db2da;
+}
+
+.biz-hour th.sun {
+  color: #e66a6a;
+}
+
+#calendar {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 480px) {
+  .biz-hour {
+    width: 100%;
+  }
+}

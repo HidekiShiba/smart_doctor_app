@@ -1,0 +1,78 @@
+<div class="main-container container-fluid mt-5">
+  <div class="row">
+    <div class="col-md-5 offset-1">
+      <h5 class="fas fa-calendar-check ml-4"> 診療受付時間</h5>
+      <table class="biz-hour mt-2">
+        <tbody>
+          <tr>
+            <th>受付時間</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th class="sat">土</th>
+            <th class="sun">日</th>
+          </tr>
+          <tr>
+            <td>9:00〜13:00</td>
+            <td>●</td><!-- 月 -->
+            <td>●</td><!-- 火 -->
+            <td>●</td><!-- 水 -->
+            <td>●</td><!-- 木 -->
+            <td>●</td><!-- 金 -->
+            <td>●</td><!-- 土 -->
+            <td>ー</td><!-- 日 -->
+          </tr>
+          <tr>
+            <td>15:00〜19:00</td>
+            <td>●</td><!-- 月 -->
+            <td>●</td><!-- 火 -->
+            <td>●</td><!-- 水 -->
+            <td>●</td><!-- 木 -->
+            <td>●</td><!-- 金 -->
+            <td>ー</td><!-- 土 -->
+            <td>ー</td><!-- 日 -->
+          </tr>
+        </tbody>
+      </table>
+      <table class="biz-hour">
+        <tr>
+          <td><h5 class="fas fa-phone mt-3"> 0123-456-7890</h5></td>
+          <td><h5 class="ml-5 mt-2"><%= link_to ' Web予約はこちら', about_path, class: "fas fa-calendar" %></h5></td>
+        </tr>
+      </table>
+      <table class="biz-hour mt-2">
+        <tbody>
+          <tr>
+            <td><h5 class="fas fa-map-marker-alt mt-2"> 〒123-4567 東京都八王子市明神町1-1-1</h5></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <h5 class="fas fa-running mb-4"> 現在の待ち状況</h5></br>
+      <h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th>待ち人数（人）</th>
+              <th>待ち時間（分）</th>
+              <th>受診予定日時</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @congestion.count %></td>
+              <td><%= @congestion.time %></td>
+              <td><%= (DateTime.now + Rational(9, 24) + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
+            </tr>
+          </tbody>
+        </table>
+        <h6 class="mt-5">当日受付をご希望の方</h6>
+        <h5><%= link_to ' 整理券発行ページへ', new_reception_path, class: "fas fa-running" %></h5>
+    </div>
+  </div>
+</div>
