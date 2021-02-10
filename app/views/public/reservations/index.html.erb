@@ -13,7 +13,6 @@
           <%= form_with model: @reservation, url: confirm_reservations_path(@reservation), local: true do |f| %>
           <%= render 'layouts/error_messages', model: f.object %>
             <div class="form-inputs">
-              
               <div class="form-group">
                 <%= f.label :start_time, "受診開始時間", class: "form-control-label"%>
                 <span class="badge badge-danger">入力不可</span>

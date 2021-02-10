@@ -1,9 +1,9 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-2 offset-3">
+    <div class="col-sm-2 offset-3">
       <h5 class="mb-4 fas fa-microphone">お知らせ詳細</h5>
     </div>
-      <div class="col-4">
+      <div class="col-sm-4">
         <div class="search-form-show">
           <%= form_tag(search_path, method: :get) do %>
             <%= text_field_tag 'search[content]' %>
@@ -12,8 +12,8 @@
           <% end %>
         </div>
       </div>
-    <div class="col-6 offset-3">
-      <table class="table-sm">
+    <div class="col-sm-6 offset-3">
+      <table class="table table-striped">
         <tr>
           <td><h6>投稿日時</h6></td>
           <td><%= @information.created_at.strftime("%Y/%m/%d %H:%M") %></td>
@@ -27,7 +27,7 @@
           <td><%= @information.subject %></td>
         </tr>
         <tr>
-          <td><h6>お知らせ画像</h6></td>
+          <td><h6>画像</h6></td>
           <td data-toggle="modal" data-target="#image_modal-<%= @information.id %>">
             <%= attachment_image_tag @information, :image, fallback: "no_image.jpg", size: "240x200" %>
           </td>

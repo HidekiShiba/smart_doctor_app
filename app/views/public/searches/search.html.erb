@@ -1,11 +1,11 @@
-<div class="container px-5 px-sm-0">
+<div class="container px-5 mt-4 px-sm-0">
   <div class="row">
     <% if @model == "information" %>
       <h2>"<%= @content %>"の検索結果：<%= @datas.count %>件</h2>
       <% if @datas.count == 0 %>
         <div class="w-100">条件にあてはまる検索結果はありません</div>
       <% else %>
-      <table class="table">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>投稿日時</th>

@@ -30,7 +30,7 @@ class Public::ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
-      redirect_to reservation_path(@reservation.id), warning: '予約内容を更新しました。お気をつけてお越しください'
+      redirect_to patient_path(current_patient.id), warning: '予約内容を更新しました。お気をつけてお越しください'
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class Public::ReservationsController < ApplicationController
   def destroy
     @reservation = Reservation.find(params[:id])
     if @reservation.destroy
-      redirect_to reservations_path, danger: '予約をキャンセルしました'
+      redirect_to patient_path(current_patient.id), danger: '予約をキャンセルしました'
     else
       render :show
     end
