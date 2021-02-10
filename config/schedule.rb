@@ -7,7 +7,7 @@
 env :PATH, ENV['PATH']
 # set :output, "/path/to/my/cron_log.log"
 set :output, 'log/cron.log'
-set :environment, :development
+set :environment, :production
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
 #   runner "MyModel.some_method"
