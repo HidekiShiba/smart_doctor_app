@@ -54,8 +54,7 @@
     </div>
     <div class="col-md-4">
       <h5 class="fas fa-running mb-4"> 現在の待ち状況</h5></br>
-      <% if "09:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "12:59" && Time.current.strftime("%a").match(/Mon|Tue|Wed|Thu|Fri|Sat/).length > 0 
-        || "15:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "18:59" && Time.current.strftime("%a").match(/Mon|Tue|Wed|Thu|Fri/).length > 0 %>
+      <% if "09:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "12:59" && Time.current.strftime("%a").match(/Mon|Tue|Wed|Thu|Fri|Sat/).length > 0 || "15:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "18:59" && Time.current.strftime("%a").match(/Mon|Tue|Wed|Thu|Fri/).length > 0 %>
       <h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
         <table class="table table-bordered">
           <thead class="thead-light">
