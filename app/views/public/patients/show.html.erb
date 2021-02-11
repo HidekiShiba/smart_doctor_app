@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-3 offset-1">
+    <div class="col-md-3 offset-1">
         <h5 class="mt-5 mb-3 fas fa-user-circle"> マイページ</h5>
         <table class="table-sm table-bordered">
           <tr><td class="table-active">氏名</td>　<td><%= @patient.last_name %>　<%= @patient.first_name %></td></tr>
@@ -14,7 +14,7 @@
         </table><br/>
         <div class="edit_patient"><%= link_to '編集する', edit_patient_path, class: "btn btn-sm btn-outline-primary" %></div>
     </div>
-    <div class="col-7">
+    <div class="col-md-7">
       <h5 class="mt-5 mb-3 fas fa-running"> 当日受付状況</h5>
         <table class="table table-striped">
           <thead>

@@ -20,14 +20,21 @@ body {
 .fc-sat { color: blue; }
 .fc-sun { color: red; }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 10px;
+  }
   #calendar {
+    display: block;
+    width: 100%;
     border-bottom: 1px solid #ddd;
     border-left: 1px solid #ddd;
     display: table-row;
     border-right: 1px solid #ddd;
     display: table-cell;
     border-bottom: none;
-    width: auto;
+  }
+  th,td {
+    font-size: 1vw;
   }
 }
