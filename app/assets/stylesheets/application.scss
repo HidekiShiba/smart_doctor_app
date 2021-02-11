@@ -33,6 +33,7 @@ body {
   flex-flow: column;
   min-height: 100vh;
 }
+
 main {
   flex: 1;
 }
@@ -40,3 +41,14 @@ main {
 .admin_search-form {
   text-align: right;
 }
+
+.field_with_errors {
+  display: contents;
+  input {
+    @extend .is-invalid;
+  }
+}
+
+// .nav-item:hover {
+//     background-color: #ffc9d7;
+// }
