@@ -16,9 +16,26 @@ margin:auto;
   text-align: right;
 }
 
-@media screen and (max-width: 480px) {
-  .table {
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 10px;
+  }
+  
+  .biz-hour {
     width: 100%;
+  }
+  
+  #calendar {
     display: block;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    display: table-row;
+    border-right: 1px solid #ddd;
+    display: table-cell;
+    border-bottom: none;
+  }
+  th,td {
+    font-size: 1vw;
   }
 }

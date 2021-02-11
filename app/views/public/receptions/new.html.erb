@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <h5 class="mb-3 fas fa-running"> 当日受付確認</h5>
-      <% if "09:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "12:59" || "15:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "18:59" %>
+      <% if "09:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "12:59" && Time.current.strftime("%a").match(/Mon|Tue|Wed|Thu|Fri|Sat/).length > 0 
+        || "15:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "18:59" && Time.current.strftime("%a").match(/Mon|Tue|Wed|Thu|Fri/).length > 0 %>
       <%= form_with model: @new_reception, local: true do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
         <table class="table-sm">
