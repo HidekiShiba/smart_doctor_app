@@ -1,8 +1,8 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <h5 class="ml-5 mb-4">受診詳細画面</h5>
-      <table>
+    <div class="col-md-6 offset-md-3">
+      <h5 class="mb-4 fas fa-user-plus"> 受診履歴詳細</h5>
+      <table class="table-sm table-striped">
         <% if @examination.reception_id.nil? %>
         <tr>
           <td><h6>受診日時</h6></td>
@@ -67,7 +67,7 @@
           <td><%= @examination.update_status %></td>
         </tr>
         <tr>
-          <td><%= link_to '受診内容の更新', edit_admin_examination_path(@examination.id), class:"btn btn-sm btn-outline-secondary" %></td>
+          <td><%= link_to '受診内容の更新', edit_admin_examination_path(@examination.id), class: "btn btn-sm btn-success" %></td>
         </tr>
       </table>
     </div>

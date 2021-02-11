@@ -37,6 +37,7 @@ ja:
       information:
         subject: 件名
         body: 本文
+        theme_id: テーマ
       reception:
         number: 待ち人数
         start_time: 受診開始予定日時

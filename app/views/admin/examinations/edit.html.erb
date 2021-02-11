@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-6 offset-md-3">
       <% if @examination.reception_id.nil? %>
-      <h4 class="ml-5 mt-4 mb-4"><strong><%= @examination.reservation.patient.last_name + @examination.reservation.patient.first_name %>さんの患者情報編集画面</strong></h4>
+      <h4 class="mt-4 mb-4"><strong><%= @examination.reservation.patient.last_name + @examination.reservation.patient.first_name %>さんの受診履歴編集</strong></h4>
       <% else %>
-      <h4 class="ml-5 mt-4 mb-4"><strong><%= @examination.reception.patient.last_name + @examination.reception.patient.first_name %>さんの患者情報編集画面</strong></h4>
+      <h4 class="mt-4 mb-4"><strong><%= @examination.reception.patient.last_name + @examination.reception.patient.first_name %>さんの受診履歴編集</strong></h4>
       <% end %>
         <div class="row">
           <div class="col-4">

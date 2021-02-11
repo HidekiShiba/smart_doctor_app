@@ -1,7 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4">
-      <h5 class="mb-2 fas fa-running">患者表示</h5><h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
+      <h5 class="mb-2 fas fa-running"> 患者表示</h5>
+      <% if "09:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "12:59" || "15:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "18:59" %>
+      <h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
       <table class="table-sm table-bordered table-striped">
         <thead class="thead-light">
           <tr>
@@ -18,7 +20,12 @@
           </tr>
         </tbody>
       </table>
-      <h5 class="mt-5 mb-2 fas fa-stopwatch">管理者更新</h5><h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
+      <% else %>
+      <h6>現在、受付対応時間外です。<br/>
+      平日9:00-13:00、15:00-19:00、<br/>
+      土曜9:00-13:00に再度受付をお願いします。</h6>
+      <% end %>
+      <h5 class="mt-5 mb-2 fas fa-stopwatch"> 管理者更新</h5><h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
       <table class="table-sm table-bordered table-striped">
         <thead class="thead-light">
           <tr>
@@ -39,7 +46,7 @@
       </table>
     </div>
     <div class="col-md-8">
-      <h5 class="mb-2 fas fa-running">当日受付一覧</h5>
+      <h5 class="mb-2 fas fa-running"> 当日受付一覧</h5>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -70,7 +77,7 @@
         <% end %>
       </table>
       <%= paginate @receptions %>
-      <h5 class="mt-4 mb-2 fas fa-user-clock">本日予約一覧</h5>
+      <h5 class="mt-4 mb-2 fas fa-user-clock"> 本日予約一覧</h5>
       <table class="table table-striped">
         <thead>
           <tr>
