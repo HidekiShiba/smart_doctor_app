@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h5 class="ml-5 mt-4 mb-3">商品編集画面</h5>
+      <h5 class="mb-3 fas fa-microphone"> お知らせ編集</h5>
         <%= form_with model: @information, url: admin_information_path, local:true do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
-         <table>
+         <table class="table">
           <tr>
             <th><h6>テーマ</h6></th>
             <th><%= f.collection_select(:theme_id, @themes, :id, :name, {prompt: "投稿テーマを選択してください"}) %></th>
@@ -19,7 +19,7 @@
           </tr>
           <tr>
             <th><h6>本文</h6></th>
-            <th><%= f.text_area :body %></th>
+            <th><%= f.text_area :body, size: "50x5" %></th>
           </tr>
           <tr>
             <th><%= f.submit '変更を保存',class:"btn btn-sm btn-success" %></th>

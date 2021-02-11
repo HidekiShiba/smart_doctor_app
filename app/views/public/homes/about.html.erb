@@ -1,16 +1,17 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-8 offset-3">
-      <h5 class="d-flex">Webの簡単予約でライフスタイルに合った診察を受けましょう！</h5>
+      <h5 class="d-flex">ライフスタイルに合わせて簡単Web予約をしよう！</h5>
     </div>
   </div>
 </div>
 <div class="main-container container-fluid mt-4">
   <div class="row">
-    <div class="col-md-5 ml-4">
+    <div class="col-md-5 ml-5">
       <h5 class="fas fa-running mb-4"> 当日受診の場合</h5><br/>
       <a><%= image_tag 'orientation1.png', size: '500x500' %></a>
-      <h5 class="mt-4"> <strong>現在の待ち状況</strong></h5></br>
+      <h5 class="mt-4"> <strong>現在の待ち状況</strong></h5>
+      <% if "09:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "12:59" || "15:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "18:59" %>
       <h6><%= @congestion.updated_at.strftime("%m/%d %H:%M") %>現在</h6>
         <table class="table table-bordered">
           <thead class="thead-light">
@@ -28,6 +29,11 @@
             </tr>
           </tbody>
         </table>
+        <% else %>
+        <h6>現在、受付対応時間外です。<br/>
+        平日9:00-13:00、15:00-19:00、<br/>
+        土曜9:00-13:00に再度受付をお願いします。</h6>
+        <% end %>
         <h6 class="mt-5">当日受付をご希望の方</h6>
         <h5 class="mt-3"><%= link_to ' 整理券発行ページへ', new_reception_path, class: "fas fa-running" %></h5>
         <div class="container ml-5 mt-5">
@@ -41,13 +47,11 @@
           </div>
         </div>
     </div>
-      <div class="row">
-        <div class="col-md-9 ml-1">
-          <h5 class="fas fa-user-clock mb-4">予約の場合</h5><br/>
-          <a><%= image_tag 'orientation2.png', size: '500x500' %></a>
-          <div class="mt-3 mb-5" id="calendar"></div>
-        </div>
-      </div>
+    <div class="col-md-6 ml-1">
+      <h5 class="fas fa-user-clock mb-4">予約の場合</h5><br/>
+      <a><%= image_tag 'orientation2.png', size: '500x500' %></a>
+      <div class="mt-3 mb-5" id="calendar"></div>
+    </div>
   </div>
 </div>
 <div class="modal" id="new_reservation" tabindex="-1" role="dialog">
@@ -64,7 +68,6 @@
           <%= form_with model: @reservation, url: confirm_reservations_path(@reservation), local: true do |f| %>
           <%= render 'layouts/error_messages', model: f.object %>
             <div class="form-inputs">
-
               <div class="form-group">
                 <%= f.label :start_time, "受診開始時間", class: "form-control-label"%>
                 <span class="badge badge-danger">入力不可</span>

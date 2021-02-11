@@ -1,7 +1,8 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <h5 class="mb-3 fas fa-running">当日受付確認</h5>
+      <h5 class="mb-3 fas fa-running"> 当日受付確認</h5>
+      <% if "09:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "12:59" || "15:00" < Time.current.strftime("%H:%M") && Time.current.strftime("%H:%M") < "18:59" %>
       <%= form_with model: @new_reception, local: true do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
         <table class="table-sm">
@@ -24,10 +25,14 @@
             <td></td><td><button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#new_reception">最終確認へ</button></td>
           </tr>
         </table>
+        <% else %>
+        <h6>現在、受付対応時間外です。<br/>
+        平日9:00-13:00、15:00-19:00、<br/>
+        土曜9:00-13:00に再度受付をお願いします。</h6>
+        <% end %>
     </div>
   </div>
 </div>
-<!-- Modal -->
 <div class="modal fade" id="new_reception" tabindex="-1" role="dialog" aria-labelledby="new_receptionLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
