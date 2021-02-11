@@ -59,4 +59,6 @@
 
 ## 使用素材
 
-- ※決定し次第、随時更新します。
+- アイコン：font-awesome-sass (~> 5.13)
+- ロゴ：https://www.designevo.com/jp/
+- お知らせ画像：https://ppon.askul.co.jp/
