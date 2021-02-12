@@ -1,9 +1,9 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-sm-2 offset-3">
+    <div class="col-md-2 offset-3">
       <h5 class="mb-4 fas fa-microphone"> お知らせ詳細</h5>
     </div>
-      <div class="col-sm-4">
+      <div class="col-md-4">
         <div class="search-form-show">
           <%= form_tag(search_path, method: :get) do %>
             <%= text_field_tag 'search[content]' %>
@@ -12,7 +12,7 @@
           <% end %>
         </div>
       </div>
-    <div class="col-sm-6 offset-3">
+    <div class="col-md-6 offset-3">
       <table class="table table-striped">
         <tr>
           <td><h6>投稿日時</h6></td>
