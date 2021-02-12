@@ -20,4 +20,8 @@ class Patient < ApplicationRecord
   validates :address, presence: true
   validates :tel, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
+  
+  def active_for_authentication?
+    super && (self.is_unsubscribe_flag == false)
+  end
 end
