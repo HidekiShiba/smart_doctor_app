@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 offset-md-4">
+    <div class="col-md-8 offset-md-2">
       <h5 class="mt-5 fas fa-medkit"> 予約内容詳細</h5><br />
       <table class="table-sm">
         <tr>
-          <% if @reservation.start_time > Date.today %> 
+          <% if @reservation.start_time.strftime("%Y-%m-%d") > Time.current.strftime("%Y-%m-%d") %> 
           <td><%= link_to '予約内容更新', edit_reservation_path, class:"btn btn-sm btn-outline-primary" %></td>
           <td><button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#reservation_cancel">予約キャンセル</button></td>
           <% end %>
@@ -28,7 +28,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal fade" id="reservation_cancel" tabindex="-1" role="dialog" aria-labelledby="reservation_cancelLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

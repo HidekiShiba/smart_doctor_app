@@ -15,25 +15,25 @@
     <div class="col-md-6 offset-3">
       <table class="table table-striped">
         <tr>
-          <td><h6>投稿日時</h6></td>
+          <td nowrap><h6>投稿日時</h6></td>
           <td><%= @information.created_at.strftime("%Y/%m/%d %H:%M") %></td>
         </tr>
         <tr>
-          <td><h6>テーマ</h6></td>
+          <td nowrap><h6>テーマ</h6></td>
           <td><%= @information.theme.name %></td>
         </tr>
         <tr>
-          <td><h6>件名</h6></td>
+          <td nowrap><h6>件名</h6></td>
           <td><%= @information.subject %></td>
         </tr>
         <tr>
-          <td><h6>画像</h6></td>
+          <td nowrap><h6>画像</h6></td>
           <td data-toggle="modal" data-target="#image_modal-<%= @information.id %>">
-            <%= attachment_image_tag @information, :image, fallback: "no_image.jpg", size: "240x200" %>
+            <%= attachment_image_tag @information, :image, fallback: "no_image.jpg", size: "160x200" %>
           </td>
         </tr>
         <tr>
-          <td><h6>内容</h6></td>
+          <td nowrap><h6>内容</h6></td>
           <td><%= @information.body %></td>
         </tr>
         <tr>
