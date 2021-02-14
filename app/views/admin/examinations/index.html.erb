@@ -31,7 +31,7 @@
           <td>
             <%= form_with model: examination, url: admin_examination_path(examination.id), local: true do |f| %>
               <%= f.select :update_status, Examination.update_statuses.keys %>
-              <%= f.submit "変更", class:"btn btn-sm btn-success"%>
+              <%= f.submit "変更", class: "btn btn-sm btn-success"%>
             <% end %>
           </td>
         </tr>

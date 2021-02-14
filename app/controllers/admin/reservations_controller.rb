@@ -1,7 +1,7 @@
 class Admin::ReservationsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @reservations = Reservation.all.page(params[:page]).per(15)
+    @reservations = Reservation.all.page(params[:page]).per(15).order(created_at: :desc)
   end
 
   def show

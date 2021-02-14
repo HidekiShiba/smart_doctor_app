@@ -16,7 +16,7 @@
           <tr>
             <td><%= @congestion.count %></td>
             <td><%= @congestion.time %></td>
-            <td><%= (DateTime.now + Rational(9, 24) + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
+            <td><%= (DateTime.current + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
           </tr>
         </tbody>
       </table>

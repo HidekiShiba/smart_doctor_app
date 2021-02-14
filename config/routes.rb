@@ -4,10 +4,10 @@ Rails.application.routes.draw do
     sessions:      'patients/sessions',
     passwords:     'patients/passwords'
   }
+  
   devise_for :admin, controllers: {
     sessions:      'admins/sessions'
   }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   scope module: :public do
     root to: 'homes#top'

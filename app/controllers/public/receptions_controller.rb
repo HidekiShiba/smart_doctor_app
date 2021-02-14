@@ -1,13 +1,12 @@
 class Public::ReceptionsController < ApplicationController
   before_action :authenticate_patient!
-  require 'date'
   def new
     @congestion = Congestion.find(1)
     @new_reception = Reception.new
     @new_reception.patient_id = current_patient.id
     @new_reception.congestion_id = 1
     @new_reception.number = @congestion.count + 1
-    @new_reception.start_time = DateTime.now + Rational(1 * @congestion.time, 24 * 60)
+    @new_reception.start_time = DateTime.current + Rational(1 * @congestion.time, 24 * 60)
   end
   
   def create
