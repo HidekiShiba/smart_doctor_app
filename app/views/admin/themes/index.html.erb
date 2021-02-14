@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <h5 class="mt-3 mb-4 fas fa-pencil-alt"> テーマ一覧・追加</h5>
-      <%= form_with model: @new_theme, url: admin_themes_path, local:true do |f| %>
+      <%= form_with model: @new_theme, url: admin_themes_path, local: true do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
         <table class="table-sm">
           <tr>
@@ -25,7 +25,7 @@
               <%= theme.name %>
             </td>
             <td class="text-center">
-              <%= link_to "編集する", edit_admin_theme_path(theme), class:"btn btn-success" %>
+              <%= link_to "編集する", edit_admin_theme_path(theme), class: "btn btn-success" %>
             </td>
           </tr>
         <% end %>

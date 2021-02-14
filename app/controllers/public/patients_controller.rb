@@ -1,12 +1,10 @@
 class Public::PatientsController < ApplicationController
-  PER = 5
-
   def show
     @patient = current_patient
     @receptions = current_patient.receptions.where(examination_status: '発行済').order(created_at: :desc)
     @reservations = current_patient.reservations.where(examination_status: '受診前').order(created_at: :desc)
     @examinations = Examination.where(reception_id: @patient.receptions.pluck(:id))
-                               .or(Examination.where(reservation_id: @patient.reservations.pluck(:id))).page(params[:page]).per(PER).order(created_at: :desc)
+                               .or(Examination.where(reservation_id: @patient.reservations.pluck(:id))).page(params[:page]).per(5).order(created_at: :desc)
   end
 
   def edit

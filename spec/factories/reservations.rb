@@ -7,7 +7,7 @@ FactoryBot.define do
     treatment { 'あり' }
     prescription { '' }
     side_effect { 'あり' }
-    other_diseases { '東京都八王子市明神町' }
+    other_diseases { '' }
     hospital_name { '' }
     pregnancy { 'なし' }
     purpose { '診察＋処方箋' }

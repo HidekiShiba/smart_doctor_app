@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-4">
             <div class="d-flex justify-content-start"><strong>患者ID</strong><p><%= @patient.id %></p></div>
-              <%= form_with model: @patient, url: admin_patient_path, local:true do |f| %>
+              <%= form_with model: @patient, url: admin_patient_path, local: true do |f| %>
               <%= render 'layouts/error_messages', model: f.object %>
                 <h6>氏名</h6>
                   <div class="d-flex justify-content-start"><%= f.text_field :last_name %><%= f.text_field :first_name %></div>
@@ -28,7 +28,7 @@
                     <p><%= f.radio_button :is_unsubscribe_flag, false %>有効患者</p>
                     <p><%= f.radio_button :is_unsubscribe_flag, true %>退会患者</p>
                   </div>
-                <%= f.submit'変更を保存する',class:"btn btn-sm btn-success" %>
+                <%= f.submit '変更を保存する',class: "btn btn-sm btn-success" %>
               <% end %>
             </div>
         </div>

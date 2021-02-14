@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row">
-    <div class="col-md-8 offset-3">
-      <h5 class="d-flex">ライフスタイルに合わせて簡単Web予約をしよう！</h5>
+    <div class="col-md-8 offset-2">
+      <h3 class="d-flex" style="color: #FF00FF;"><strong>ライフスタイルに合わせて簡単Web予約をしよう！</strong></h3>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
             <tr>
               <td><%= @congestion.count %></td>
               <td><%= @congestion.time %></td>
-              <td><%= (DateTime.now + Rational(9, 24) + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= (DateTime.current + Rational(1 * @congestion.time, 24 * 60)).strftime("%Y/%m/%d %H:%M") %></td>
             </tr>
           </tbody>
         </table>
@@ -40,8 +40,8 @@
           <div class="row">
             <div class="col-md-12">
              <table>
-              <td><h5><%= link_to '新規登録', new_patient_registration_path, class: "fas fa-lock btn-lg btn-success ml-5" %></h5></td>
-              <td><h5><%= link_to 'ログイン', patient_session_path, method: :post, class: "fas fa-lock-open btn-lg btn-primary ml-5" %></h5></td>
+              <td><h5><%= link_to ' 新規登録', new_patient_registration_path, class: "fas fa-lock btn-lg btn-success ml-5" %></h5></td>
+              <td><h5><%= link_to ' ログイン', patient_session_path, method: :post, class: "fas fa-lock-open btn-lg btn-primary ml-5" %></h5></td>
              </table>
             </div>
           </div>

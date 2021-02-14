@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-4">
             <div class="d-flex justify-content-start"><strong>受診ID</strong><p><%= @examination.id %></p></div>
-              <%= form_with model: @examination, url: admin_examination_path(@examination.id), local:true do |f| %>
+              <%= form_with model: @examination, url: admin_examination_path(@examination.id), local: true do |f| %>
                 <h6>診断</h6>
                   <div class="d-flex justify-content-start"><%= f.text_field :diagnosis %></div>
                 <h6>処置</h6>
@@ -22,7 +22,7 @@
                   <div class="d-flex justify-content-start">
                     <p><%= f.select :update_status, Examination.update_statuses.keys %></p>
                   </div>
-                <%= f.submit'受診内容を保存する',class:"btn btn-sm btn-success" %>
+                <%= f.submit'受診内容を保存する', class: "btn btn-sm btn-success" %>
               <% end %>
             </div>
         </div>
