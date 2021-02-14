@@ -1,8 +1,5 @@
 function eventCalendar() {
      $('#calendar').fullCalendar({
-  // 初期処理
-    // ここに各種オプションを書いていくと設定が適用されていく
-    // options定義
     header: {
             left: 'title',
             right: 'today, prev, next'
@@ -11,14 +8,12 @@ function eventCalendar() {
             month: {columnFormat: 'ddd',},
             week: {columnFormat: 'M/D[(]ddd[)]',},
     },
-
     validRange: function(nowDate) {
       return {
         start: nowDate,
         end: nowDate.clone().add(1, 'months')
       };
     },
-
     timeZone: 'Asia/Tokyo',
     locales: 'ja',
     defaultView: 'agendaWeek',
@@ -35,8 +30,6 @@ function eventCalendar() {
     selectable: true,
     selectHelper: true,
     eventStartEditable: false,
-    
-
     businessHours: true,
     businessHours:[{
       dow: [ 1, 2, 3, 4, 5, 6 ],
@@ -49,18 +42,13 @@ function eventCalendar() {
       end: '19:00',
     }],
     selectConstraint: "businessHours",
-
     events: "/reservations.json",
     eventColor: '#FFCCCC',
     eventTextColor: '#000000',
     displayEventTime: false,
     overlap: false,
-
     nowIndicator: true,
-    // dayMaxEvents: true,
-
     select: function(startDate, endDate) {
-      // alert('selected ' + startDate.format() + ' to ' + endDate.format());
       if(!$("#patient-name").length > 0) {
         window.location.replace("./patients/sign_in")
       } else {
@@ -72,14 +60,12 @@ function eventCalendar() {
     }
   })
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   eventCalendar()
 
   $(".input-start").val(formatTime(".input-start"));
   $(".input-end").val(formatTime(".input-end"));
 })
-
 function formatTime(selector) {
   return $(selector).val().replace(/:00 \+0900/g, "");
 }

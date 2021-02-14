@@ -1,7 +1,7 @@
 class Admin::ExaminationsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @examinations = Examination.all.page(params[:page]).per(15)
+    @examinations = Examination.all.page(params[:page]).per(15).order(created_at: :desc)
   end
 
   def show

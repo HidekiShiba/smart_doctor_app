@@ -9,7 +9,10 @@
         <thead>
           <tr>
             <th>患者ID</th>
-            <th>氏名</th>
+            <th>患者氏名</th>
+            <th>生年月日</th>
+            <th>性別</th>
+            <th>電話番号</th>
             <th>メールアドレス</th>
             <th>ステータス</th>
           </tr>
@@ -23,6 +26,9 @@
                 <%= data.last_name + data.first_name %>
               <% end %>
             </td>
+            <td><%= data.birth_date %></td>
+            <td><%= data.sex %></td>
+            <td><%= data.tel %></td>
             <td><%= data.email %></td>
             <td>
               <% if data.is_unsubscribe_flag == false %>
@@ -140,7 +146,7 @@
           <td>
             <%= form_with model: data, url: admin_examination_path(data.id), local: true do |f| %>
               <%= f.select :update_status, Examination.update_statuses.keys %>
-              <%= f.submit "変更", class:"btn btn-sm btn-success"%>
+              <%= f.submit "変更", class: "btn btn-sm btn-success"%>
             <% end %>
           </td>
         </tr>
